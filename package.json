@@ -18,6 +18,7 @@
   "homepage": "https://github.com/matt-oc/nathair#readme",
   "dependencies": {
     "ejs": "3.1.6",
-    "express": "4.17.1"
+    "express": "4.17.1",
+    "node-persist": "3.1.0"
   }
 }
