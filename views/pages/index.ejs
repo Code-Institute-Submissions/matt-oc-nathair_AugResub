@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/header'); %>
+</head>
+<body class="container">
+
+<header>
+    <%- include('../partials/nav'); %>
+</header>
+
+<main>
+    <div class="jumbotron">
+        <h1>This is great</h1>
+        <p>Welcome to templating using EJS</p>
+        <h2>Variable</h2>
+<p> <%= JSON.stringify(test) %>;</p>
+    </div>
+</main>
+
+<footer>
+    <%- include('../partials/footer'); %>
+</footer>
+<link href="/assets/css/structure.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+    let test_data = <%-JSON.stringify(test) %>
+</script>
+<script src = "/assets/javascript/scripts.js"></script>
+</body>
+</html>
