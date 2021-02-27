@@ -27,11 +27,12 @@ app.get('/about', function(req, res) {
 app.listen(8080);
 console.log('8080 is the magic port');
 
-(async () => {
+async function m()  {
 const storage = require('node-persist');
 
 //you must first call storage.init
 await storage.init( /* options ... */ );
 await storage.setItem('name','yourname')
 console.log(await storage.getItem('name'));
-})();
+}
+m();
