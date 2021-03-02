@@ -18,14 +18,14 @@ app.get('/', function(req, res) {
 });
 
 // about page
-app.get('/about', function(req, res) {
-    res.render('pages/about',{
+app.get('/leaderboard', function(req, res) {
+    res.render('pages/leaderboard',{
       test: test
     });
 });
 
-app.listen(8080);
-console.log('8080 is the magic port');
+app.listen(8000);
+console.log('App running');
 
 async function m()  {
 const storage = require('node-persist');
