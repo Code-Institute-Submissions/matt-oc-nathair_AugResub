@@ -1,3 +1,9 @@
 h1 {
   color: green;
 }
+
+.mainGame {
+  width: 80vw;
+  height: 50vh;
+  background-color: blue;
+}
