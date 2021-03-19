@@ -18,3 +18,5 @@ image https://uxwing.com/n-button-icon/
 https://levelup.gitconnected.com/building-a-snake-game-using-canvas-260a738edcec snake game
 
 https://stackoverflow.com/questions/4416505/how-to-take-keyboard-input-in-javascript button input
+
+speed control https://stackoverflow.com/questions/19764018/controlling-fps-with-requestanimationframe

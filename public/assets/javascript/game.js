@@ -3,6 +3,7 @@ let cont = canvas.getContext("2d");
 let score = 0;
 let foodX = Math.floor(Math.random() * canvas.width) + 1;
 let foodY = Math.floor(Math.random() * canvas.height) + 1;
+const fps = 30;
 
 
 let img = new Image();
@@ -20,7 +21,10 @@ function gameLoop() {
   snake.draw();
   snake.move();
   snake.checkForFood();
-  requestAnimationFrame(gameLoop);
+  // adapted from https://stackoverflow.com/questions/19764018/controlling-fps-with-requestanimationframe
+  setTimeout(() => {
+    requestAnimationFrame(gameLoop);
+  }, 1200 / fps);
 }
 
 
@@ -60,13 +64,29 @@ class Snake {
 
   move() {
     if (this.direction == 'right') {
+      if (this.headX < canvas.width)
       return this.headX++;
+      else {
+        return this.headX = 0;
+      }
     } else if (this.direction == 'up') {
+      if (this.headY > 0)
       return this.headY--;
+      else {
+        return this.headY = canvas.height + 1;
+      }
     } else if (this.direction == 'down') {
+      if (this.headY < canvas.height)
       return this.headY++;
+      else {
+        return this.headY = 0;
+      }
     } else if (this.direction == 'left') {
+      if (this.headX > 0)
       return this.headX--;
+      else {
+        return this.headX = canvas.width + 1;
+      }
     }
   }
 
