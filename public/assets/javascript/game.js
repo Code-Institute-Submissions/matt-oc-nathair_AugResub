@@ -1,8 +1,8 @@
 let canvas = document.getElementById("mainGame");
 let cont = canvas.getContext("2d");
 let score = 0;
-let foodX;
-let foodY;
+let foodX = Math.floor(Math.random() * canvas.width) + 1;
+let foodY = Math.floor(Math.random() * canvas.height) + 1;
 
 
 let img = new Image();
@@ -11,33 +11,38 @@ img.src = '/assets/images/test.png';
 
 function startGame() {
   gameLoop(snake);
-  randomFood();
+  updateScore();
 }
 
 function gameLoop() {
   cont.clearRect(0, 0, canvas.width, canvas.height);
+  drawFood(foodX, foodY);
   snake.draw();
   snake.move();
-  snake.increaseLength();
   snake.checkForFood();
   requestAnimationFrame(gameLoop);
 }
 
+
 function randomFood() {
   foodX =  Math.floor(Math.random() * canvas.width) + 1;
-  foodY = Math.floor(Math.random() * 1canvas.height) + 1;)
+  foodY = Math.floor(Math.random() * canvas.height) + 1;
   if (foodX != snake.headX && foodY != snake.headY) {
     drawFood(foodX, foodY);
   }
   else randomFood();
 }
 
-function drawfood(x,y) {
+function drawFood(x,y) {
   cont.beginPath();
   cont.arc(x + 1 / 2, y + 1 / 2, 2 / 2,
     0, 2 * Math.PI);
-  cont.fillStyle = "green";
+  cont.fillStyle = "rgba(255,255,255,1)";
   cont.fill();
+}
+
+function updateScore() {
+  document.getElementsByClassName('score')[0].innerHTML = score;
 }
 
 class Snake {
@@ -75,6 +80,8 @@ class Snake {
   checkForFood() {
     if (foodX == snake.headX && foodY == snake.headY) {
       snake.increaseLength()
+      score++;
+      updateScore();
       randomFood();
     }
 
