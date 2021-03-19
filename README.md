@@ -14,3 +14,7 @@ express.js
 
 Node server, ejs implementation https://www.digitalocean.com/community/tutorials/how-to-use-ejs-to-template-your-node-application
 image https://uxwing.com/n-button-icon/
+
+https://levelup.gitconnected.com/building-a-snake-game-using-canvas-260a738edcec snake game
+
+https://stackoverflow.com/questions/4416505/how-to-take-keyboard-input-in-javascript button input
