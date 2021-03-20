@@ -3,8 +3,15 @@ let cont = canvas.getContext("2d");
 let score = 0;
 let foodX = Math.floor(Math.random() * canvas.width) + 1;
 let foodY = Math.floor(Math.random() * canvas.height) + 1;
-const fps = 30;
+let difficulty = document.getElementById("difficultyLevel").value;
 
+let slider = document.getElementById("difficultyLevel");
+
+// Update the current slider value (each time you drag the slider handle)
+slider.oninput = function() {
+  difficulty = this.value;
+  setDifficulty(difficulty);
+}
 
 let img = new Image();
 img.src = '/assets/images/test.png';
@@ -24,7 +31,11 @@ function gameLoop() {
   // adapted from https://stackoverflow.com/questions/19764018/controlling-fps-with-requestanimationframe
   setTimeout(() => {
     requestAnimationFrame(gameLoop);
-  }, 1200 / fps);
+  }, 170 / difficulty);
+}
+
+function setDifficulty(level) {
+  return difficulty = level;
 }
 
 
