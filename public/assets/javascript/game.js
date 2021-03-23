@@ -4,6 +4,8 @@ let score = 0;
 let foodX = Math.floor(Math.random() * canvas.width) + 1;
 let foodY = Math.floor(Math.random() * canvas.height) + 1;
 let difficulty = document.getElementById("difficultyLevel").value;
+let direction = 90;
+let squareOffset = 10;
 
 let slider = document.getElementById("difficultyLevel");
 
@@ -13,8 +15,8 @@ slider.oninput = function() {
   setDifficulty(difficulty);
 }
 
-let img = new Image();
-img.src = '/assets/images/test.png';
+let head = new Image();
+head.src = '/assets/images/head.png';
 
 
 function startGame() {
@@ -28,10 +30,9 @@ function gameLoop() {
   snake.draw();
   snake.move();
   snake.checkForFood();
-  // adapted from https://stackoverflow.com/questions/19764018/controlling-fps-with-requestanimationframe
   setTimeout(() => {
-    requestAnimationFrame(gameLoop);
-  }, 170 / difficulty);
+    gameLoop();
+  }, 50 / difficulty);
 }
 
 function setDifficulty(level) {
@@ -50,7 +51,7 @@ function randomFood() {
 
 function drawFood(x,y) {
   cont.beginPath();
-  cont.arc(x + 1 / 2, y + 1 / 2, 2 / 2,
+  cont.arc(x , y , 5,
     0, 2 * Math.PI);
   cont.fillStyle = "rgba(255,255,255,1)";
   cont.fill();
@@ -75,28 +76,28 @@ class Snake {
 
   move() {
     if (this.direction == 'right') {
-      if (this.headX < canvas.width)
+      if (this.headX < canvas.width - squareOffset)
       return this.headX++;
       else {
-        return this.headX = 0;
+        return this.headX = squareOffset;
       }
     } else if (this.direction == 'up') {
-      if (this.headY > 0)
+      if (this.headY > squareOffset)
       return this.headY--;
       else {
-        return this.headY = canvas.height + 1;
+        return this.headY = canvas.height - squareOffset;
       }
     } else if (this.direction == 'down') {
-      if (this.headY < canvas.height)
+      if (this.headY < canvas.height - squareOffset)
       return this.headY++;
       else {
-        return this.headY = 0;
+        return this.headY = squareOffset;
       }
     } else if (this.direction == 'left') {
-      if (this.headX > 0)
+      if (this.headX > squareOffset)
       return this.headX--;
       else {
-        return this.headX = canvas.width + 1;
+        return this.headX = canvas.width - squareOffset;
       }
     }
   }
@@ -109,26 +110,24 @@ class Snake {
   }
 
   checkForFood() {
-    if (foodX == snake.headX && foodY == snake.headY) {
+    console.log(snake.headX, foodX + " ", snake.headY, foodY);
+
+    if (Math.abs(foodX - snake.headX) <= squareOffset && Math.abs(foodY - snake.headY) <= squareOffset) {
       snake.increaseLength()
       score++;
       updateScore();
       randomFood();
     }
-
   }
 
   draw() {
     cont.beginPath();
-    cont.arc(this.headX + 1 / 2, this.headY + 1 / 2, 2 / 2,
-      0, 2 * Math.PI);
+    cont.rect(this.headX - squareOffset, this.headY - squareOffset, squareOffset * 2, squareOffset * 2);
     cont.fillStyle = this.color;
     cont.fill();
-    let tailRadius = 1 / 4;
     for (var i = 0; i < this.length; i++) {
 
     }
-    cont.drawImage(img, 1, 1, 5, 5);
   }
 }
 
@@ -136,6 +135,7 @@ document.addEventListener('keydown', function(event) {
   switch (event.keyCode) {
     case 37:
       snake.changeDir('left')
+      direction = 180;
       break;
     case 38:
       snake.changeDir('up')
@@ -149,5 +149,6 @@ document.addEventListener('keydown', function(event) {
   }
 });
 
-let snake = new Snake('rgba(255,255,255,1)', 100, 100, 10, 'right')
+
+let snake = new Snake('rgba(255,255,255,1)', 3, 40, 100, 'right')
 startGame();
