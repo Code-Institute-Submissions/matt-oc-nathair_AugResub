@@ -4,20 +4,14 @@ let score = 0;
 let foodX = Math.floor(Math.random() * canvas.width) + 1;
 let foodY = Math.floor(Math.random() * canvas.height) + 1;
 let difficulty = document.getElementById("difficultyLevel").value;
-let direction = 90;
 let squareOffset = 10;
 
 let slider = document.getElementById("difficultyLevel");
 
-// Update the current slider value (each time you drag the slider handle)
 slider.oninput = function() {
   difficulty = this.value;
   setDifficulty(difficulty);
 }
-
-let head = new Image();
-head.src = '/assets/images/head.png';
-
 
 function startGame() {
   gameLoop(snake);
@@ -62,41 +56,73 @@ function updateScore() {
 }
 
 class Snake {
-  constructor(color, length, headX, headY, direction) {
+  constructor(color, length, headX, headY, tailX, tailY, direction) {
     this.color = color;
     this.length = length;
     this.headX = headX;
     this.headY = headY;
+    this.tailX = tailX;
+    this.tailY = tailY;
     this.direction = direction;
   }
 
-  increaseLength() {
+  increaseLength(x,y) {
+    this.updateTail(x,y,true)
     return this.length++;
   }
 
+  updateTail(x,y,lengthen) {
+    if (lengthen) {
+      for (var i = 0; i < 20; i++) {
+      this.tailX.unshift(x);
+      this.tailY.unshift(y);
+    }
+    }
+    else {
+    this.tailX.unshift(x);
+    this.tailY.unshift(y);
+    this.tailX.pop();
+    this.tailY.pop();
+  }
+  }
+
+
   move() {
     if (this.direction == 'right') {
-      if (this.headX < canvas.width - squareOffset)
+      if (this.headX < canvas.width - squareOffset){
+      this.updateTail(this.headX, this.headY)
       return this.headX++;
+    }
       else {
+        this.updateTail(this.headX, this.headY)
         return this.headX = squareOffset;
       }
     } else if (this.direction == 'up') {
-      if (this.headY > squareOffset)
+      if (this.headY > squareOffset) {
+      this.updateTail(this.headX, this.headY)
       return this.headY--;
+    }
       else {
+        this.updateTail(this.headX, this.headY)
         return this.headY = canvas.height - squareOffset;
       }
     } else if (this.direction == 'down') {
-      if (this.headY < canvas.height - squareOffset)
-      return this.headY++;
+      if (this.headY < canvas.height - squareOffset) {
+        this.updateTail(this.headX, this.headY)
+        return this.headY++;
+      }
       else {
+        this.updateTail(this.headX, this.headY)
         return this.headY = squareOffset;
       }
     } else if (this.direction == 'left') {
-      if (this.headX > squareOffset)
+      if (this.headX > squareOffset) {
+      this.updateTail(this.headX, this.headY)
       return this.headX--;
+    }
+
       else {
+        this.updateTail(this.headX, this.headY)
         return this.headX = canvas.width - squareOffset;
       }
     }
@@ -110,10 +136,8 @@ class Snake {
   }
 
   checkForFood() {
-    console.log(snake.headX, foodX + " ", snake.headY, foodY);
-
     if (Math.abs(foodX - snake.headX) <= squareOffset && Math.abs(foodY - snake.headY) <= squareOffset) {
-      snake.increaseLength()
+      this.increaseLength(snake.headX, snake.headY);
       score++;
       updateScore();
       randomFood();
@@ -123,32 +147,46 @@ class Snake {
   draw() {
     cont.beginPath();
     cont.rect(this.headX - squareOffset, this.headY - squareOffset, squareOffset * 2, squareOffset * 2);
+    for (var i = 0; i < this.tailX.length; i++) {
+    cont.rect(this.tailX[i] - squareOffset, this.tailY[i] - squareOffset, squareOffset * 2, squareOffset * 2);
+    }
     cont.fillStyle = this.color;
     cont.fill();
-    for (var i = 0; i < this.length; i++) {
-
-    }
   }
 }
 
 document.addEventListener('keydown', function(event) {
   switch (event.keyCode) {
     case 37:
+    case 65:
       snake.changeDir('left')
-      direction = 180;
       break;
     case 38:
+    case 87:
       snake.changeDir('up')
       break;
     case 39:
+    case 68:
       snake.changeDir('right')
       break;
     case 40:
+    case 83:
       snake.changeDir("down")
       break;
   }
 });
+// https://stackoverflow.com/questions/39563033/how-to-resize-the-canvas-using-javascript
+(function() {
 
+  // Event handler to resize the canvas when the document view is changed
+  window.addEventListener('resize', resizeCanvas, false);
 
-let snake = new Snake('rgba(255,255,255,1)', 3, 40, 100, 'right')
+  function resizeCanvas() {
+    canvas.width = window.innerWidth *.8;
+    canvas.height = window.innerHeight *.8;
+  }
+  resizeCanvas();
+  })();
+
+let snake = new Snake('rgba(255,255,255,1)', 5, 100, 100,[80, 60, 40, 20, 0], [100, 100, 100, 100, 100], 'right')
 startGame();
