@@ -5,7 +5,7 @@ let foodX = Math.floor(Math.random() * canvas.width) + 1;
 let foodY = Math.floor(Math.random() * canvas.height) + 1;
 let difficulty = document.getElementById("difficultyLevel").value;
 let squareOffset = 10;
-
+let tailIncrease = squareOffset * 2;
 let slider = document.getElementById("difficultyLevel");
 
 slider.oninput = function() {
@@ -73,7 +73,7 @@ class Snake {
 
   updateTail(x,y,lengthen) {
     if (lengthen) {
-      for (var i = 0; i < 20; i++) {
+      for (var i = 0; i < tailIncrease; i++) {
       this.tailX.unshift(x);
       this.tailY.unshift(y);
     }
@@ -188,5 +188,5 @@ document.addEventListener('keydown', function(event) {
   resizeCanvas();
   })();
 
-let snake = new Snake('rgba(255,255,255,1)', 5, 100, 100,[80, 60, 40, 20, 0], [100, 100, 100, 100, 100], 'right')
+let snake = new Snake('rgba(171, 167, 156, 1)', 5, 100, 100,[80, 60, 40, 20, 0], [100, 100, 100, 100, 100], 'right')
 startGame();
