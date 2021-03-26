@@ -74,8 +74,8 @@ class Snake {
   updateTail(x,y,lengthen) {
     if (lengthen) {
       for (var i = 0; i < tailIncrease; i++) {
-      this.tailX.unshift(x);
-      this.tailY.unshift(y);
+      this.tailX.push(x);
+      this.tailY.push(y);
     }
     }
     else {
@@ -146,6 +146,25 @@ class Snake {
 
   draw() {
     cont.beginPath();
+    if (snake.direction == 'right') {
+    cont.arc(this.headX - squareOffset + 19, this.headY - squareOffset + 6, 3, 0, 2 * Math.PI)
+    cont.arc(this.headX - squareOffset + 19, this.headY - squareOffset + 14, 3, 0, 2 * Math.PI)
+  } else if (snake.direction == 'left') {
+    cont.arc(this.headX - squareOffset + 1, this.headY - squareOffset + 6, 3, 0, 2 * Math.PI)
+    cont.arc(this.headX - squareOffset + 1, this.headY - squareOffset + 14, 3, 0, 2 * Math.PI)
+  }
+  else if ( snake.direction == 'down') {
+    cont.arc(this.headX - squareOffset + 6, this.headY - squareOffset + 19, 3, 0, 2 * Math.PI)
+    cont.arc(this.headX - squareOffset + 14, this.headY - squareOffset + 19, 3, 0, 2 * Math.PI)
+  }
+  else {
+    cont.arc(this.headX - squareOffset + 6, this.headY - squareOffset + 1, 3, 0, 2 * Math.PI)
+    cont.arc(this.headX - squareOffset + 14, this.headY - squareOffset + 1, 3, 0, 2 * Math.PI)
+  }
+    cont.fillStyle = "black";
+    cont.fill();
+
+    cont.beginPath();
     cont.rect(this.headX - squareOffset, this.headY - squareOffset, squareOffset * 2, squareOffset * 2);
     for (var i = 0; i < this.tailX.length; i++) {
     cont.rect(this.tailX[i] - squareOffset, this.tailY[i] - squareOffset, squareOffset * 2, squareOffset * 2);
@@ -171,7 +190,7 @@ document.addEventListener('keydown', function(event) {
       break;
     case 40:
     case 83:
-      snake.changeDir("down")
+      snake.changeDir('down')
       break;
   }
 });
@@ -188,5 +207,5 @@ document.addEventListener('keydown', function(event) {
   resizeCanvas();
   })();
 
-let snake = new Snake('rgba(171, 167, 156, 1)', 5, 100, 100,[80, 60, 40, 20, 0], [100, 100, 100, 100, 100], 'right')
+let snake = new Snake('rgba(255,255,255,1)', 5, 100, 100,[], [], 'right')
 startGame();
