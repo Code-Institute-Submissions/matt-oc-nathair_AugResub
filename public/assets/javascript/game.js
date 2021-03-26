@@ -7,16 +7,14 @@ let difficulty = document.getElementById("difficultyLevel").value;
 let squareOffset = 10;
 let tailIncrease = squareOffset * 2;
 let slider = document.getElementById("difficultyLevel");
+let startX = 100;
+let startY = 100;
 
 slider.oninput = function() {
   difficulty = this.value;
   setDifficulty(difficulty);
 }
 
-function startGame() {
-  gameLoop(snake);
-  updateScore();
-}
 
 function gameLoop() {
   cont.clearRect(0, 0, canvas.width, canvas.height);
@@ -207,5 +205,10 @@ document.addEventListener('keydown', function(event) {
   resizeCanvas();
   })();
 
-let snake = new Snake('rgba(255,255,255,1)', 5, 100, 100,[], [], 'right')
+  function startGame() {
+    gameLoop(snake);
+    updateScore();
+    snake.updateTail(startX, startY, true)
+  }
+let snake = new Snake('rgba(255,255,255,1)', 5, startX, startY,[], [], 'right')
 startGame();
