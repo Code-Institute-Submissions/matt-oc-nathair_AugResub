@@ -4,11 +4,9 @@ h1 {
 
 .mainGame {
   background-color: rgba(30, 235, 255, 0.5);
-  width: 800;
-  height: 600;
 }
 
 
 @media (max-width: 500px) {
-  
+
 }
