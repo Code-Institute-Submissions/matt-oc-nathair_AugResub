@@ -22,6 +22,7 @@ function gameLoop() {
   snake.draw();
   snake.move();
   snake.checkForFood();
+  snake.checkForImpact(snake.direction);
   setTimeout(() => {
     gameLoop();
   }, 50 / difficulty);
@@ -141,6 +142,48 @@ class Snake {
       randomFood();
     }
   }
+
+    checkForImpact(direction) {
+      console.log(direction);
+      switch (direction) {
+        case 'right':
+          for (var i = 0; i < snake.length; i++) {
+            console.log("snake:" + (snake.headX + 1) + "tail:" + snake.tailX[i] );
+            if (Math.abs(snake.headX + 1) == snake.tailX[i])
+            {
+              alert("bang right")
+
+            }
+          }
+          break;
+        case 'left':
+          for (var i = 0; i < snake.length; i++) {
+            if (Math.abs(snake.headX - 1) == snake.tailX[i])
+            {
+              alert("bang left")
+
+            }
+          }
+          break;
+        case 'up':
+          for (var i = 0; i < snake.length; i++) {
+            if (Math.abs(snake.headY + 1) == snake.tailX[i])
+            {
+              alert("bang up")
+            }
+          }
+          break;
+        case 'down':
+          for (var i = 0; i < snake.length; i++) {
+            if (Math.abs(snake.headY - 1) == snake.tailX[i])
+            {
+              alert("bang down")
+            }
+          }
+          break;
+      }
+
+    }
 
   draw() {
     cont.beginPath();
