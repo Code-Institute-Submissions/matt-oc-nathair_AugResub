@@ -9,7 +9,7 @@ let tailIncrease = squareOffset * 2;
 let slider = document.getElementById("difficultyLevel");
 let startX = 100;
 let startY = 100;
-
+let foodSize = 5;
 slider.oninput = function() {
   difficulty = this.value;
   setDifficulty(difficulty);
@@ -43,7 +43,7 @@ function randomFood() {
 
 function drawFood(x,y) {
   cont.beginPath();
-  cont.arc(x , y , 5,
+  cont.arc(x , y , foodSize,
     0, 2 * Math.PI);
   cont.fillStyle = "rgba(255,255,255,1)";
   cont.fill();
@@ -210,5 +210,6 @@ document.addEventListener('keydown', function(event) {
     updateScore();
     snake.updateTail(startX, startY, true)
   }
+
 let snake = new Snake('rgba(255,255,255,1)', 5, startX, startY,[], [], 'right')
 startGame();
