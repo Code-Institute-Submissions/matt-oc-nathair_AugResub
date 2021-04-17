@@ -10,6 +10,7 @@ let slider = document.getElementById("difficultyLevel");
 let startX = 100;
 let startY = 100;
 let foodSize = 5;
+let life = true;
 slider.oninput = function() {
   difficulty = this.value;
   setDifficulty(difficulty);
@@ -30,6 +31,10 @@ function gameLoop() {
 
 function setDifficulty(level) {
   return difficulty = level;
+}
+
+function gameOver() {
+
 }
 
 
@@ -70,13 +75,18 @@ class Snake {
     return this.length++;
   }
 
-  updateTail(x,y,lengthen) {
-    if (lengthen) {
-      for (var i = 0; i < tailIncrease; i++) {
+  updateTail(x,y,lengthen,length) {
+    if (lengthen && length) {
+      for (var i = 0; i < length; i++) {
       this.tailX.push(x);
       this.tailY.push(y);
     }
-    }
+  } else if (lengthen) {
+    for (var i = 0; i < tailIncrease; i++) {
+    this.tailX.push(x);
+    this.tailY.push(y);
+  }
+  }
     else {
     this.tailX.unshift(x);
     this.tailY.unshift(y);
@@ -144,45 +154,64 @@ class Snake {
   }
 
     checkForImpact(direction) {
-      console.log(direction);
       switch (direction) {
         case 'right':
           for (var i = 0; i < snake.length; i++) {
-            console.log("snake:" + (snake.headX + 1) + "tail:" + snake.tailX[i] );
-            if (Math.abs(snake.headX + 1) == snake.tailX[i])
+            if (Math.abs(snake.headX + squareOffset * 2 + 1) == snake.tailX[i])
             {
-              alert("bang right")
-
+              for (var i = 0; i < snake.length; i++) {
+                if (Math.abs(snake.headY) == snake.tailY[i] && Math.abs(snake.headX + squareOffset * 2 + 1) == snake.tailX[i]) {
+                  console.log(snake.headY, snake.tailY[i]);
+                alert("game over")
+                break;
+              }
+              }
             }
           }
           break;
         case 'left':
           for (var i = 0; i < snake.length; i++) {
-            if (Math.abs(snake.headX - 1) == snake.tailX[i])
+            if (Math.abs(snake.headX - squareOffset * 2 - 1) == snake.tailX[i])
             {
-              alert("bang left")
-
+              for (var i = 0; i < snake.length; i++) {
+                if (Math.abs(snake.headY) == snake.tailY[i] && Math.abs(snake.headX - squareOffset * 2 - 1) == snake.tailX[i]) {
+                alert("game over")
+                break;
+              }
+              }
             }
           }
-          break;
         case 'up':
           for (var i = 0; i < snake.length; i++) {
-            if (Math.abs(snake.headY + 1) == snake.tailX[i])
+            if (Math.abs(snake.headY - squareOffset * 2 - 1) == snake.tailY[i])
             {
-              alert("bang up")
+              for (var i = 0; i < snake.length; i++) {
+                if (Math.abs(snake.headX) == snake.tailX[i] && Math.abs(snake.headY - squareOffset * 2 - 1) == snake.tailY[i]) {
+                alert("game over")
+                break;
+              }
+              }
             }
           }
-          break;
         case 'down':
           for (var i = 0; i < snake.length; i++) {
-            if (Math.abs(snake.headY - 1) == snake.tailX[i])
+            if (Math.abs(snake.headY + 1) == snake.tailY[i])
             {
-              alert("bang down")
+            //  alert("bang down")
             }
           }
-          break;
+          for (var i = 0; i < snake.length; i++) {
+            if (Math.abs(snake.headY + squareOffset * 2 + 1) == snake.tailY[i])
+            {
+              for (var i = 0; i < snake.length; i++) {
+                if (Math.abs(snake.headX) == snake.tailX[i] && Math.abs(snake.headY + squareOffset * 2 + 1) == snake.tailY[i]) {
+                alert("game over")
+                break;
+              }
+              }
+            }
+          }
       }
-
     }
 
   draw() {
@@ -251,8 +280,8 @@ document.addEventListener('keydown', function(event) {
   function startGame() {
     gameLoop(snake);
     updateScore();
-    snake.updateTail(startX, startY, true)
+    snake.updateTail(startX, startY, true, snake.length)
   }
 
-let snake = new Snake('rgba(255,255,255,1)', 5, startX, startY,[], [], 'right')
+let snake = new Snake('rgba(255,255,255,1)', 5 * tailIncrease, startX, startY,[], [], 'right')
 startGame();
