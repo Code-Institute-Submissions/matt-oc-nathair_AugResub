@@ -161,7 +161,6 @@ class Snake {
             {
               for (var i = 0; i < snake.length; i++) {
                 if (Math.abs(snake.headY) == snake.tailY[i] && Math.abs(snake.headX + squareOffset * 2 + 1) == snake.tailX[i]) {
-                  console.log(snake.headY, snake.tailY[i]);
                 alert("game over")
                 break;
               }
@@ -181,6 +180,7 @@ class Snake {
               }
             }
           }
+          break;
         case 'up':
           for (var i = 0; i < snake.length; i++) {
             if (Math.abs(snake.headY - squareOffset * 2 - 1) == snake.tailY[i])
@@ -193,13 +193,9 @@ class Snake {
               }
             }
           }
+          break;
         case 'down':
-          for (var i = 0; i < snake.length; i++) {
-            if (Math.abs(snake.headY + 1) == snake.tailY[i])
-            {
-            //  alert("bang down")
-            }
-          }
+
           for (var i = 0; i < snake.length; i++) {
             if (Math.abs(snake.headY + squareOffset * 2 + 1) == snake.tailY[i])
             {
@@ -211,6 +207,7 @@ class Snake {
               }
             }
           }
+          break;
       }
     }
 
