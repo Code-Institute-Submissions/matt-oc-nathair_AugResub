@@ -20,7 +20,7 @@ slider.oninput = function() {
 function gameLoop() {
   cont.clearRect(0, 0, canvas.width, canvas.height);
   drawFood(foodX, foodY);
-  snake.draw();
+  snake.drawSnake();
   snake.move();
   snake.checkForFood();
   snake.checkForImpact(snake.direction);
@@ -39,17 +39,16 @@ function gameOver() {
 
 
 function randomFood() {
-  foodX =  Math.floor(Math.random() * canvas.width) + 1;
+  foodX = Math.floor(Math.random() * canvas.width) + 1;
   foodY = Math.floor(Math.random() * canvas.height) + 1;
   if (foodX != snake.headX && foodY != snake.headY) {
     drawFood(foodX, foodY);
-  }
-  else randomFood();
+  } else randomFood();
 }
 
-function drawFood(x,y) {
+function drawFood(x, y) {
   cont.beginPath();
-  cont.arc(x , y , foodSize,
+  cont.arc(x, y, foodSize,
     0, 2 * Math.PI);
   cont.fillStyle = "rgba(255,255,255,1)";
   cont.fill();
@@ -70,48 +69,45 @@ class Snake {
     this.direction = direction;
   }
 
-  increaseLength(x,y) {
-    this.updateTail(x,y,true)
+  increaseLength(x, y) {
+    this.updateTail(x, y, true)
     return this.length++;
   }
 
-  updateTail(x,y,lengthen,length) {
+  updateTail(x, y, lengthen, length) {
     if (lengthen && length) {
       for (var i = 0; i < length; i++) {
-      this.tailX.push(x);
-      this.tailY.push(y);
+        this.tailX.push(x);
+        this.tailY.push(y);
+      }
+    } else if (lengthen) {
+      for (var i = 0; i < tailIncrease; i++) {
+        this.tailX.push(x);
+        this.tailY.push(y);
+      }
+    } else {
+      this.tailX.unshift(x);
+      this.tailY.unshift(y);
+      this.tailX.pop();
+      this.tailY.pop();
     }
-  } else if (lengthen) {
-    for (var i = 0; i < tailIncrease; i++) {
-    this.tailX.push(x);
-    this.tailY.push(y);
-  }
-  }
-    else {
-    this.tailX.unshift(x);
-    this.tailY.unshift(y);
-    this.tailX.pop();
-    this.tailY.pop();
-  }
   }
 
 
   move() {
     if (this.direction == 'right') {
-      if (this.headX < canvas.width - squareOffset){
-      this.updateTail(this.headX, this.headY)
-      return this.headX++;
-    }
-      else {
+      if (this.headX < canvas.width - squareOffset) {
+        this.updateTail(this.headX, this.headY)
+        return this.headX++;
+      } else {
         this.updateTail(this.headX, this.headY)
         return this.headX = squareOffset;
       }
     } else if (this.direction == 'up') {
       if (this.headY > squareOffset) {
-      this.updateTail(this.headX, this.headY)
-      return this.headY--;
-    }
-      else {
+        this.updateTail(this.headX, this.headY)
+        return this.headY--;
+      } else {
         this.updateTail(this.headX, this.headY)
         return this.headY = canvas.height - squareOffset;
       }
@@ -119,18 +115,15 @@ class Snake {
       if (this.headY < canvas.height - squareOffset) {
         this.updateTail(this.headX, this.headY)
         return this.headY++;
-      }
-      else {
+      } else {
         this.updateTail(this.headX, this.headY)
         return this.headY = squareOffset;
       }
     } else if (this.direction == 'left') {
       if (this.headX > squareOffset) {
-      this.updateTail(this.headX, this.headY)
-      return this.headX--;
-    }
-
-      else {
+        this.updateTail(this.headX, this.headY)
+        return this.headX--;
+      } else {
         this.updateTail(this.headX, this.headY)
         return this.headX = canvas.width - squareOffset;
       }
@@ -139,7 +132,7 @@ class Snake {
 
   changeDir(dir) {
     if (this.direction == 'right' && dir != 'left' || this.direction == 'left' && dir != 'right' ||
-    this.direction == 'up' && dir != 'down' || this.direction == 'down' && dir != 'up') {
+      this.direction == 'up' && dir != 'down' || this.direction == 'down' && dir != 'up') {
       return this.direction = dir;
     }
   }
@@ -150,93 +143,102 @@ class Snake {
       score++;
       updateScore();
       randomFood();
+      this.drawTongue();
     }
   }
 
-    checkForImpact(direction) {
-      switch (direction) {
-        case 'right':
-          for (var i = 0; i < snake.length; i++) {
-            if (Math.abs(snake.headX + squareOffset * 2 + 1) == snake.tailX[i])
-            {
-              for (var i = 0; i < snake.length; i++) {
-                if (Math.abs(snake.headY) == snake.tailY[i] && Math.abs(snake.headX + squareOffset * 2 + 1) == snake.tailX[i]) {
+  checkForImpact(direction) {
+    switch (direction) {
+      case 'right':
+        for (var i = 0; i < snake.length; i++) {
+          if (Math.abs(snake.headX + squareOffset * 2 + 1) == snake.tailX[i]) {
+            for (var i = 0; i < snake.length; i++) {
+              if (Math.abs(snake.headY) == snake.tailY[i] && Math.abs(snake.headX + squareOffset * 2 + 1) == snake.tailX[i]) {
                 alert("game over")
                 break;
               }
-              }
             }
           }
-          break;
-        case 'left':
-          for (var i = 0; i < snake.length; i++) {
-            if (Math.abs(snake.headX - squareOffset * 2 - 1) == snake.tailX[i])
-            {
-              for (var i = 0; i < snake.length; i++) {
-                if (Math.abs(snake.headY) == snake.tailY[i] && Math.abs(snake.headX - squareOffset * 2 - 1) == snake.tailX[i]) {
+        }
+        break;
+      case 'left':
+        for (var i = 0; i < snake.length; i++) {
+          if (Math.abs(snake.headX - squareOffset * 2 - 1) == snake.tailX[i]) {
+            for (var i = 0; i < snake.length; i++) {
+              if (Math.abs(snake.headY) == snake.tailY[i] && Math.abs(snake.headX - squareOffset * 2 - 1) == snake.tailX[i]) {
                 alert("game over")
                 break;
               }
-              }
             }
           }
-          break;
-        case 'up':
-          for (var i = 0; i < snake.length; i++) {
-            if (Math.abs(snake.headY - squareOffset * 2 - 1) == snake.tailY[i])
-            {
-              for (var i = 0; i < snake.length; i++) {
-                if (Math.abs(snake.headX) == snake.tailX[i] && Math.abs(snake.headY - squareOffset * 2 - 1) == snake.tailY[i]) {
+        }
+        break;
+      case 'up':
+        for (var i = 0; i < snake.length; i++) {
+          if (Math.abs(snake.headY - squareOffset * 2 - 1) == snake.tailY[i]) {
+            for (var i = 0; i < snake.length; i++) {
+              if (Math.abs(snake.headX) == snake.tailX[i] && Math.abs(snake.headY - squareOffset * 2 - 1) == snake.tailY[i]) {
                 alert("game over")
                 break;
               }
-              }
             }
           }
-          break;
-        case 'down':
-
-          for (var i = 0; i < snake.length; i++) {
-            if (Math.abs(snake.headY + squareOffset * 2 + 1) == snake.tailY[i])
-            {
-              for (var i = 0; i < snake.length; i++) {
-                if (Math.abs(snake.headX) == snake.tailX[i] && Math.abs(snake.headY + squareOffset * 2 + 1) == snake.tailY[i]) {
+        }
+        break;
+      case 'down':
+        for (var i = 0; i < snake.length; i++) {
+          if (Math.abs(snake.headY + squareOffset * 2 + 1) == snake.tailY[i]) {
+            for (var i = 0; i < snake.length; i++) {
+              if (Math.abs(snake.headX) == snake.tailX[i] && Math.abs(snake.headY + squareOffset * 2 + 1) == snake.tailY[i]) {
                 alert("game over")
                 break;
               }
-              }
             }
           }
-          break;
-      }
+        }
+        break;
     }
+  }
 
-  draw() {
+  drawSnake() {
     cont.beginPath();
     if (snake.direction == 'right') {
-    cont.arc(this.headX - squareOffset + 19, this.headY - squareOffset + 6, 3, 0, 2 * Math.PI)
-    cont.arc(this.headX - squareOffset + 19, this.headY - squareOffset + 14, 3, 0, 2 * Math.PI)
-  } else if (snake.direction == 'left') {
-    cont.arc(this.headX - squareOffset + 1, this.headY - squareOffset + 6, 3, 0, 2 * Math.PI)
-    cont.arc(this.headX - squareOffset + 1, this.headY - squareOffset + 14, 3, 0, 2 * Math.PI)
-  }
-  else if ( snake.direction == 'down') {
-    cont.arc(this.headX - squareOffset + 6, this.headY - squareOffset + 19, 3, 0, 2 * Math.PI)
-    cont.arc(this.headX - squareOffset + 14, this.headY - squareOffset + 19, 3, 0, 2 * Math.PI)
-  }
-  else {
-    cont.arc(this.headX - squareOffset + 6, this.headY - squareOffset + 1, 3, 0, 2 * Math.PI)
-    cont.arc(this.headX - squareOffset + 14, this.headY - squareOffset + 1, 3, 0, 2 * Math.PI)
-  }
+      cont.arc(this.headX - squareOffset + 19, this.headY - squareOffset + 6, 3, 0, 2 * Math.PI)
+      cont.arc(this.headX - squareOffset + 19, this.headY - squareOffset + 14, 3, 0, 2 * Math.PI)
+    } else if (snake.direction == 'left') {
+      cont.arc(this.headX - squareOffset + 1, this.headY - squareOffset + 6, 3, 0, 2 * Math.PI)
+      cont.arc(this.headX - squareOffset + 1, this.headY - squareOffset + 14, 3, 0, 2 * Math.PI)
+    } else if (snake.direction == 'down') {
+      cont.arc(this.headX - squareOffset + 6, this.headY - squareOffset + 19, 3, 0, 2 * Math.PI)
+      cont.arc(this.headX - squareOffset + 14, this.headY - squareOffset + 19, 3, 0, 2 * Math.PI)
+    } else {
+      cont.arc(this.headX - squareOffset + 6, this.headY - squareOffset + 1, 3, 0, 2 * Math.PI)
+      cont.arc(this.headX - squareOffset + 14, this.headY - squareOffset + 1, 3, 0, 2 * Math.PI)
+    }
     cont.fillStyle = "black";
     cont.fill();
 
     cont.beginPath();
     cont.rect(this.headX - squareOffset, this.headY - squareOffset, squareOffset * 2, squareOffset * 2);
     for (var i = 0; i < this.tailX.length; i++) {
-    cont.rect(this.tailX[i] - squareOffset, this.tailY[i] - squareOffset, squareOffset * 2, squareOffset * 2);
+      cont.rect(this.tailX[i] - squareOffset, this.tailY[i] - squareOffset, squareOffset * 2, squareOffset * 2);
     }
     cont.fillStyle = this.color;
+    cont.fill();
+  }
+
+  drawTongue() {
+    cont.beginPath();
+    if (snake.direction == 'right') {
+      cont.arc(this.headX - squareOffset + 19, this.headY - squareOffset + 10, 10, 0, 2 * Math.PI)
+    } else if (snake.direction == 'left') {
+      cont.arc(this.headX - squareOffset + 1, this.headY - squareOffset + 10, 10, 0, 2 * Math.PI)
+    } else if (snake.direction == 'down') {
+      cont.arc(this.headX - squareOffset + 10, this.headY - squareOffset + 19, 10, 0, 2 * Math.PI)
+    } else {
+      cont.arc(this.headX - squareOffset + 10, this.headY - squareOffset + 1, 10, 0, 2 * Math.PI)
+    }
+    cont.fillStyle = "#f55b96";
     cont.fill();
   }
 }
@@ -268,17 +270,17 @@ document.addEventListener('keydown', function(event) {
   window.addEventListener('resize', resizeCanvas, false);
 
   function resizeCanvas() {
-    canvas.width = window.innerWidth *.8;
-    canvas.height = window.innerHeight *.8;
+    canvas.width = window.innerWidth * .8;
+    canvas.height = window.innerHeight * .8;
   }
   resizeCanvas();
-  })();
+})();
 
-  function startGame() {
-    gameLoop(snake);
-    updateScore();
-    snake.updateTail(startX, startY, true, snake.length)
-  }
+function startGame() {
+  gameLoop(snake);
+  updateScore();
+  snake.updateTail(startX, startY, true, snake.length)
+}
 
-let snake = new Snake('rgba(255,255,255,1)', 5 * tailIncrease, startX, startY,[], [], 'right')
+let snake = new Snake('rgba(255,255,255,1)', 5 * tailIncrease, startX, startY, [], [], 'right')
 startGame();
