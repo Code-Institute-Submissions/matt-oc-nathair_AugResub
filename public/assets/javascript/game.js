@@ -46,7 +46,7 @@ function randomFood() {
   } else randomFood();
 }
 
-function drawFood(x, y) {
+function drawFood(x,y) {
   cont.beginPath();
   cont.arc(x, y, foodSize,
     0, 2 * Math.PI);
@@ -71,7 +71,11 @@ class Snake {
 
   increaseLength(x, y) {
     this.updateTail(x, y, true)
-    return this.length++;
+    return this.length + tailIncrease;
+  }
+
+  setColor(color) {
+    this.color = color;
   }
 
   updateTail(x, y, lengthen, length) {
@@ -154,7 +158,7 @@ class Snake {
           if (Math.abs(snake.headX + squareOffset * 2 + 1) == snake.tailX[i]) {
             for (var i = 0; i < snake.length; i++) {
               if (Math.abs(snake.headY) == snake.tailY[i] && Math.abs(snake.headX + squareOffset * 2 + 1) == snake.tailX[i]) {
-                alert("game over")
+                changeColour();
                 break;
               }
             }
@@ -166,7 +170,7 @@ class Snake {
           if (Math.abs(snake.headX - squareOffset * 2 - 1) == snake.tailX[i]) {
             for (var i = 0; i < snake.length; i++) {
               if (Math.abs(snake.headY) == snake.tailY[i] && Math.abs(snake.headX - squareOffset * 2 - 1) == snake.tailX[i]) {
-                alert("game over")
+                changeColour();
                 break;
               }
             }
@@ -178,7 +182,7 @@ class Snake {
           if (Math.abs(snake.headY - squareOffset * 2 - 1) == snake.tailY[i]) {
             for (var i = 0; i < snake.length; i++) {
               if (Math.abs(snake.headX) == snake.tailX[i] && Math.abs(snake.headY - squareOffset * 2 - 1) == snake.tailY[i]) {
-                alert("game over")
+                changeColour();
                 break;
               }
             }
@@ -190,7 +194,7 @@ class Snake {
           if (Math.abs(snake.headY + squareOffset * 2 + 1) == snake.tailY[i]) {
             for (var i = 0; i < snake.length; i++) {
               if (Math.abs(snake.headX) == snake.tailX[i] && Math.abs(snake.headY + squareOffset * 2 + 1) == snake.tailY[i]) {
-                alert("game over")
+                changeColour();
                 break;
               }
             }
@@ -276,6 +280,18 @@ document.addEventListener('keydown', function(event) {
   resizeCanvas();
 })();
 
+function changeColour() {
+  snake.setColor(getRandomColor())
+}
+
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
 function startGame() {
   gameLoop(snake);
   updateScore();
