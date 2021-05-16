@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Play Nathair</title>
+  <!-- meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, shrink-to-fit=no">
+    <meta name="description" content="Play a snake style game and compare scores with your friends.">
+
+  <!-- Icons from Font Awesome -->
+   <script src="https://kit.fontawesome.com/e7dc5a7f78.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" sizes="32x32" href="assets/images/favicon.ico">
+    <link href="assets/css/styles.css" rel="stylesheet" type="text/css">
+    <link href="assets/bootstrap-5.0.0-beta/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+</head>
+<body class="container-fluid">
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">Nathair</a>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/leaderboard">Leaderboard</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section>
+    <div class="container-fluid">
+      <div class="row">
+    <div class="col-12 d-flex justify-content-center">
+        <h1>Game</h1>
+    </div>
+  </div>
+  <div class="col-12 d-flex justify-content-center score">
+  </div>
+  <div class="col-12">
+  <input type="range" min="1" max="10" value="1" class="slider" id="difficultyLevel">
+</div>
+<div class="row">
+<div class="col-12 d-flex justify-content-center">
+<canvas id="mainGame" class="mainGame" width=1000 height=750></canvas>
+</div>
+</div>
+  </div>
+  </section>
+</main>
+
+<footer>
+    <h1>test</h1>
+</footer>
+<script src= "assets/bootstrap-5.0.0-beta/js/bootstrap.min.js"></script>
+<script src="assets/javascript/scripts.js"></script>
+<script src="assets/javascript/game.js"></script>
+
+</body>
+</html>
