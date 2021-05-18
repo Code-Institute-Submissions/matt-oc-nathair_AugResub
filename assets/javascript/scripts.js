@@ -27,3 +27,10 @@ request.onload = function () {
     console.log(this.responseText);
 };
 request.send(body);
+
+
+$(document).ready(function() {
+  setTimeout(() => { $(".loader").hide();
+  $(".content").show();$(".footer").show(); $(".header").show(); }, 2000);
+
+});

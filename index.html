@@ -10,12 +10,13 @@
 
   <!-- Icons from Font Awesome -->
    <script src="https://kit.fontawesome.com/e7dc5a7f78.js" crossorigin="anonymous"></script>
+   <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Google+Sans:400,500,700|Google+Sans+Text:400">
     <link rel="icon" type="image/x-icon" sizes="32x32" href="assets/images/favicon.ico">
     <link href="assets/css/styles.css" rel="stylesheet" type="text/css">
     <link href="assets/bootstrap-5.0.0-beta/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 </head>
-<body class="container-fluid">
-<header>
+<body class="container-fluid px-0">
+<header class="header">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="/">Nathair</a>
     <ul class="navbar-nav mr-auto">
@@ -28,8 +29,16 @@
     </ul>
   </nav>
 </header>
-
+<section>
+  <div class="container-fluid vh-100 loader">
+    <div class="row">
+  <div class="col-12 d-flex vh-100 justify-content-center align-items-center">
+      <img src="/assets/images/loading.svg">
+  </div>
+</div>
+</section>
 <main>
+  <div class="content">
   <section>
     <div class="container-fluid">
       <div class="row">
@@ -49,11 +58,13 @@
 </div>
   </div>
   </section>
+</div>
 </main>
 
-<footer>
-    <h1>test</h1>
+<footer class="footer">
+    <h1>Test</h1>
 </footer>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script src= "assets/bootstrap-5.0.0-beta/js/bootstrap.min.js"></script>
 <script src="assets/javascript/scripts.js"></script>
 <script src="assets/javascript/game.js"></script>

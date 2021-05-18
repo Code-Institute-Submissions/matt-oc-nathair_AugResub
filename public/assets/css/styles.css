@@ -11,14 +11,6 @@ h1 {
 
 }
 
-.content, .footer, .header{
-  display: none;
-}
-
-.loader {
-  background-color: #000000;
-}
-
-.loader img {
-  height: 25%;
+.content {
+  display:none;
 }
