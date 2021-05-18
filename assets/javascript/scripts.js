@@ -31,6 +31,6 @@ request.send(body);
 
 $(document).ready(function() {
   setTimeout(() => { $(".loader").hide();
-  $(".content").show();$(".footer").show(); $(".header").show(); }, 2000);
+  $(".content").fadeIn();$(".footer").fadeIn(); $(".header").fadeIn(); }, 2000);
 
 });
