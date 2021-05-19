@@ -85,8 +85,25 @@ border-radius: 0!important
   margin-top: 1%;
 }
 
+.table {
+  white-space: nowrap;
+}
+
+.table tr:nth-child(odd) {
+    background: #dedede;
+}
+
+.table-sm {
+  white-space: nowrap;
+  width: 80px;
+}
+
 .mainGame {
   background-color: rgba(30, 235, 255, 0.5);
+}
+
+.fa-gamepad {
+  margin-left: 5px;
 }
 
 

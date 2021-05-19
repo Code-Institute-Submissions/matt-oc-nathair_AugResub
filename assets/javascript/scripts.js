@@ -28,6 +28,13 @@ request.onload = function () {
 };
 request.send(body);
 
+
+
+$('#leaderboard').on('show.bs.modal', function () {
+  console.log("hi");
+})
+
+
 var contactModal = document.getElementById('contactUs')
 var leaderboardModal = document.getElementById('leaderboard')
 
