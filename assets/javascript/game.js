@@ -13,7 +13,6 @@ let foodSize = 5;
 let name = "No Name";
 let life = true;
 
-
 slider.oninput = function() {
   difficulty = this.value;
   setDifficulty(difficulty);

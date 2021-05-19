@@ -2,6 +2,7 @@ html {
   height: 100%;
   scroll-behavior: smooth;
   overflow-y: scroll;
+  background-color: #000000;
 }
 
 body {
@@ -57,9 +58,12 @@ p {
 }
 
 .jumbotron {
-background-image: url("/assets/images/background.jpg");
-background-size: cover;
-height: 100vh;
+  background: url("/assets/images/background.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+height: 100%;
 border-radius: 0!important
 }
 
