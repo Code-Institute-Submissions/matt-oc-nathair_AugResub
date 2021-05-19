@@ -98,11 +98,11 @@ To deploy it is recommended that a pull request is made from the main branch to 
 
 ## Credits
 
-[Animation timing](https://stackoverflow.com/questions/19764018/controlling-fps-with-requestanimationframe),
-[Inspiration](https://levelup.gitconnected.com/building-a-snake-game-using-canvas-260a738edcec),
-[Bootstrap docs](https://getbootstrap.com/)  ,
-[Background image](https://unsplash.com/photos/p1SKuYXxqec?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink),
-[Javascript API](https://www.taniarascia.com/how-to-connect-to-an-api-with-javascript/),
-[Overlay adapted from stackoverflow](https://stackoverflow.com/questions/61297397/position-absolute-top0-bottom-0-right0-left0-and-parent-paddings) ,
-[Formspree was used for the form](https://formspree.i),
+[Animation timing](https://stackoverflow.com/questions/19764018/controlling-fps-with-requestanimationframe)<br />
+[Inspiration](https://levelup.gitconnected.com/building-a-snake-game-using-canvas-260a738edcec)<br />
+[Bootstrap docs](https://getbootstrap.com/) <br />
+[Background image](https://unsplash.com/photos/p1SKuYXxqec?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink)<br />
+[Javascript API](https://www.taniarascia.com/how-to-connect-to-an-api-with-javascript/)<br />
+[Overlay adapted from stackoverflow](https://stackoverflow.com/questions/61297397/position-absolute-top0-bottom-0-right0-left0-and-parent-paddings)<br />
+[Formspree was used for the form](https://formspree.i)<br />
 All images and music used are under creative commons license.
