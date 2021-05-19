@@ -153,6 +153,10 @@ border-radius: 0!important
   margin-top: 1%;
 }
 
+.score {
+  margin-left: 10px;
+}
+
 .table {
   white-space: nowrap;
 }
@@ -164,6 +168,15 @@ border-radius: 0!important
 .table-sm {
   white-space: nowrap;
   width: 80px;
+}
+
+.game-title {
+  align-items: center;
+  justify-content: center!important;
+}
+
+.modal-footer-game {
+  justify-content: center!important;
 }
 
 .modal-wide {

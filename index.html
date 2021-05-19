@@ -148,13 +148,10 @@
 <div class="modal fade" id="gameContainer" tabindex="-1" aria-labelledby="setup" aria-hidden="true">
   <div class="modal-wide modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Score:</h5><div class="col-12 d-flex justify-content-center score">
+      <div class="modal-header game-title">
+        <h3 class="modal-title">Score:<span class="score">
           0
-        </div>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        </span></h3>
       </div>
       <div class="modal-body">
 
@@ -164,8 +161,9 @@
       </div>
       </div>
       </div>
-      <div class="modal-footer">
-        <a href="https://github.com/matt-oc" target="_blank"><span class="footer-credits">Game by: <i class="fab fa-github"></i></a></span>
+      <div class="modal-footer-game modal-footer">
+        <button type="button" class="btn bg-red color-white" data-dismiss="modal" id="closeGameModal">Quit the Game</button>
+
       </div>
     </div>
   </div>
