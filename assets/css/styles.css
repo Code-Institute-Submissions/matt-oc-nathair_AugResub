@@ -10,19 +10,23 @@ body {
   position: absolute;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
   text-align: center;
 }
 
 h1 {
   font-size: 14rem;
   font-family: 'Reggae One';
-  margin: 100px 0 0 0!important;
+  margin: 80px 0 0 0!important;
 }
 
 h2 {
   font-size: 2.5rem;
   margin: 40px 0 40px 0;
+}
+
+h4 {
+  margin-top: 20px!important;
 }
 
 p {
@@ -41,7 +45,7 @@ p {
 .lead {
   color: #ffffff;
   margin-top: 2%;
-  max-width: 50%;
+  max-width: 54%;
 }
 
 .jumbotron .lead {
@@ -87,6 +91,19 @@ border-radius: 0!important
 
 }
 
+.bg-green {
+  background-color: #00a451!important;
+}
+
+.bg-blue {
+  background-color: #00a4d5!important;
+}
+
+.bg-pink {
+  background-color: #e2a4d5!important;
+
+}
+
 .color-white {
   color: #fff!important;
 }
@@ -95,9 +112,26 @@ border-radius: 0!important
   background-color: #E15B63!important;
 }
 
+.btn-color:hover, .btn-color:focus, .btn-color:active {
+  color: #ff9966!important;
+
+}
 .header {
   position: relative;
   width: 100%;
+}
+
+.button-group {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.color-label {
+  padding: 10px;
+  margin: 10px;
 }
 
 .info-link {
@@ -132,6 +166,10 @@ border-radius: 0!important
   width: 80px;
 }
 
+.modal-wide {
+  max-width: 90%;
+}
+
 .mainGame {
   background-color: rgba(30, 235, 255, 0.5);
 }
@@ -143,6 +181,12 @@ border-radius: 0!important
 
 @media (max-width: 500px) {
 
+}
+
+@media (min-width: 576px){
+.modal-wide {
+  max-width: 90%!important;
+}
 }
 
 .content, .footer, .header{
@@ -187,4 +231,40 @@ border-radius: 0!important
 
 .footer-credits:hover {
   opacity: 1;
+}
+
+#handle {
+  width: 100%;
+}
+
+/* Slider Css adapted from https://www.w3schools.com/howto/howto_js_rangeslider.asp*/
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #3F41EF;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #3F41EF;
+  cursor: pointer;
 }
