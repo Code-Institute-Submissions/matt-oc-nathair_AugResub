@@ -21,7 +21,7 @@ request.send(body);
 
 $('#leaderboard').on('show.bs.modal', function() {
   let table = document.getElementById("table");
-
+if (table.rows.length <= 1) {
   // Open a new connection, using the GET request on the URL endpoint
   request.open('GET', 'https://node-storage-api.herokuapp.com/leaderboard', true)
 
@@ -44,6 +44,7 @@ $('#leaderboard').on('show.bs.modal', function() {
   }
   // Send request
   request.send()
+}
 })
 
 
