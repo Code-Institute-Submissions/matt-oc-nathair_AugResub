@@ -157,6 +157,10 @@ border-radius: 0!important
   margin-left: 10px;
 }
 
+body.modal-open {
+    overflow: hidden;
+}
+
 .table {
   white-space: nowrap;
 }
@@ -177,6 +181,7 @@ border-radius: 0!important
 
 .modal-footer-game {
   justify-content: center!important;
+  border-top: none!important;
 }
 
 .modal-wide {
@@ -200,6 +205,10 @@ border-radius: 0!important
 .modal-wide {
   max-width: 90%!important;
 }
+}
+
+.content {
+  margin-bottom: -32px;
 }
 
 .content, .footer, .header{

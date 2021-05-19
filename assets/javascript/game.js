@@ -278,7 +278,7 @@ document.addEventListener('keydown', function(event) {
 
   function resizeCanvas() {
     canvas.width = window.innerWidth * .8;
-    canvas.height = window.innerHeight * .8;
+    canvas.height = window.innerHeight * .7;
   }
   resizeCanvas();
 })();
