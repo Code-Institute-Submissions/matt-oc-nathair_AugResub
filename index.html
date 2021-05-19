@@ -18,25 +18,7 @@
 </head>
 <body class="container-fluid px-0">
 <header class="header">
-  <nav class="navbar navbar-expand-lg navbar-dark">
-
-<div class="z-5">
-    <a class="navbar-brand" href="/">Nathair</a>
-  </div>
-<div class="z-5">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/leaderboard">Leaderboard</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/contact"><i class="fas fa-question"></i></a>
-      </li>
-    </ul>
-</div>
-  </nav>
+<a class="info-link color-white z-5" data-toggle="modal" data-target="#contactUs"  role="button" ><i class="fas fa-question"></i></a>
 </header>
 <section>
   <div class="container-fluid vh-100 loader">
@@ -52,11 +34,12 @@
     <div class="jumbotron">
       <div class="z-5">
   <h1 class="color-white display-1">Welcome to Nathair</h1>
-  <p class="lead">This is a simple Snake style game. The rules are simple, set your difficulty and last as long as possible. Score in the top 10 people to get on our leaderboard.</p>
+  <p class="lead">This is a simple Snake style game. The rules are simple, set your difficulty and last as long as possible. Score in the top 10 people to get on our <a class="text-anchor" data-toggle="modal" data-target="#leaderboard"  role="button">leaderboard.</a></p>
   <hr class="my-4">
-  <p class="lead">It uses utility classes for typography and spacing to space content out within the larger container.</p>
+  <p class="lead">Every time you eat a pear your snake will grow in length, Score extra points by watching out for the cherries!</p>
   <p class="lead">
     <a class="bg-purple btn color-white btn-lg" href="#" role="button">Play Now<i class="fas fa-gamepad"></i></a>
+    <a class="bg-purple btn color-white btn-lg" data-toggle="modal" data-target="#leaderboard"  role="button">Leaderboard<i class="far fa-chart-bar"></i></a>
   </p>
 </div>
 </div>
@@ -81,13 +64,11 @@
 </div>
 </main>
 <section>
-  <button type="button" class="btn z-5 btn-primary" data-toggle="modal" data-target="#contactUs">Contact</button>
-
   <div class="modal fade" id="contactUs" tabindex="-1" aria-labelledby="contact" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Contact Us</h5>
+          <h5 class="modal-title">Something not right? Contact Us</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -119,8 +100,6 @@
 </section>
 
 <section>
-<button type="button" class="btn z-5 btn-primary" data-toggle="modal" data-target="#leaderboard">Leaderboard</button>
-
 <div class="modal fade" id="leaderboard" tabindex="-1" aria-labelledby="leaderboard" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">

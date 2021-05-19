@@ -15,7 +15,8 @@ h1, h2, h3 {
 
 h1 {
   font-size: 14rem;
-  font-family: 'Reggae One'
+  font-family: 'Reggae One';
+  margin: 100px 0 0 0!important;
 }
 
 h2 {
@@ -38,6 +39,16 @@ p {
 
 .lead {
   color: #ffffff;
+  margin-top: 2%;
+  max-width: 50%;
+}
+
+.jumbotron .lead {
+  font-size: 1.5rem
+}
+
+.btn {
+  margin: 15px;
 }
 
 .jumbotron {
@@ -60,6 +71,16 @@ border-radius: 0!important
   z-index: 3;
 }
 
+.text-anchor {
+  text-decoration: underline;
+  color: #ffffff;
+}
+
+.text-anchor:hover {
+  color: #3e41ef;
+  text-decoration: none;
+}
+
 .bg-purple {
   background-color: #3e41ef!important;
 
@@ -71,6 +92,18 @@ border-radius: 0!important
 
 .bg-red {
   background-color: #E15B63!important;
+}
+
+.header {
+  position: relative;
+  width: 100%;
+}
+
+.info-link {
+  position: absolute!important;
+  top: 5px;
+  right: 8px;
+  font-size: 25px;
 }
 
 .contact {
@@ -102,8 +135,8 @@ border-radius: 0!important
   background-color: rgba(30, 235, 255, 0.5);
 }
 
-.fa-gamepad {
-  margin-left: 5px;
+.fa-gamepad, .fa-chart-bar {
+  margin-left: 7px;
 }
 
 
