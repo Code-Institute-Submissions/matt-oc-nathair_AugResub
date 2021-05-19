@@ -1,24 +1,21 @@
 var request = new XMLHttpRequest()
 
-
+//function for post request to send to leaderboard
+function sendData(name, score) {
 var data = {
-  "name": "Mat",
-  "score": 10
+  "name": name,
+  "score": score
 }
 var body = JSON.stringify(data)
-
-
-
-
 request.open('POST', 'https://node-storage-api.herokuapp.com/addscore', true);
 request.setRequestHeader('Content-type', 'application/json;charset=UTF-8');
 request.onload = function() {
-  console.log(this.responseText);
+  alert(this.responseText);
 };
 request.send(body);
+}
 
-
-
+// Get requst to get leaderboard data
 $('#leaderboard').on('show.bs.modal', function() {
   let table = document.getElementById("table");
 if (table.rows.length <= 1) {
@@ -47,7 +44,7 @@ if (table.rows.length <= 1) {
 }
 })
 
-
+// Contact us form
 var contactModal = document.getElementById('contactUs')
 var leaderboardModal = document.getElementById('leaderboard')
 
@@ -101,8 +98,7 @@ function ajax(method, url, data, success, error) {
   xhr.send(data);
 }
 
-
-
+// loader removal
 $(document).ready(function() {
   setTimeout(() => {
     $(".loader").hide();
