@@ -38,7 +38,7 @@
   <hr class="my-4">
   <p class="lead">Every time you eat a pear your snake will grow in length, Score extra points by watching out for the cherries!</p>
   <p class="lead">
-    <a class="bg-purple btn color-white btn-lg" href="#" role="button">Play Now<i class="fas fa-gamepad"></i></a>
+    <a class="bg-purple btn color-white btn-lg" data-toggle="modal" data-target="#setup"  role="button">Play Now<i class="fas fa-gamepad"></i></a>
     <a class="bg-purple btn color-white btn-lg" data-toggle="modal" data-target="#leaderboard"  role="button">Leaderboard<i class="far fa-chart-bar"></i></a>
   </p>
 </div>
@@ -105,6 +105,33 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Leaderboard:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table" id="table">
+  <tr>
+   <th class="table-sm">Pos</th>
+   <th>Name</th>
+   <th>Score</th>
+  </tr>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn bg-red color-white" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section>
+<div class="modal fade" id="setup" tabindex="-1" aria-labelledby="setup" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Game Setup:</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
