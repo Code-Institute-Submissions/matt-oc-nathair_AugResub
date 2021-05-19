@@ -5,61 +5,18 @@ let foodX = Math.floor(Math.random() * canvas.width) + 1;
 let foodY = Math.floor(Math.random() * canvas.height) + 1;
 let difficulty = document.getElementById("difficultyLevel").value;
 let squareOffset = 10;
-let tailIncrease = squareOffset * 2;
+let tailIncrease = squareOffset / 2;
 let slider = document.getElementById("difficultyLevel");
 let startX = 100;
 let startY = 100;
 let foodSize = 5;
+let count = 4;
 let name = "No Name";
+let movements = [];
 let life = true;
 
-slider.oninput = function() {
-  difficulty = this.value;
-  setDifficulty(difficulty);
-}
 
-
-function gameLoop() {
-  cont.clearRect(0, 0, canvas.width, canvas.height);
-  drawFood(foodX, foodY);
-  snake.drawSnake();
-  snake.move();
-  snake.checkForFood();
-  snake.checkForImpact(snake.direction);
-  setTimeout(() => {
-    gameLoop();
-  }, 50 / difficulty);
-}
-
-function setDifficulty(level) {
-  return difficulty = level;
-}
-
-function gameOver() {
-
-}
-
-
-function randomFood() {
-  foodX = Math.floor(Math.random() * canvas.width) + 1;
-  foodY = Math.floor(Math.random() * canvas.height) + 1;
-  if (foodX != snake.headX && foodY != snake.headY) {
-    drawFood(foodX, foodY);
-  } else randomFood();
-}
-
-function drawFood(x,y) {
-  cont.beginPath();
-  cont.arc(x, y, foodSize,
-    0, 2 * Math.PI);
-  cont.fillStyle = "rgba(255,255,255,1)";
-  cont.fill();
-}
-
-function updateScore() {
-  document.getElementsByClassName('score')[0].innerHTML = score;
-}
-
+// Snake class to handle all snake data and movements
 class Snake {
   constructor(color, length, headX, headY, tailX, tailY, direction) {
     this.color = color;
@@ -99,12 +56,11 @@ class Snake {
     }
   }
 
-
   move() {
     if (this.direction == 'right') {
       if (this.headX < canvas.width - squareOffset) {
         this.updateTail(this.headX, this.headY)
-        return this.headX++;
+        return this.headX = this.headX + 5;
       } else {
         this.updateTail(this.headX, this.headY)
         return this.headX = squareOffset;
@@ -112,7 +68,7 @@ class Snake {
     } else if (this.direction == 'up') {
       if (this.headY > squareOffset) {
         this.updateTail(this.headX, this.headY)
-        return this.headY--;
+        return this.headY = this.headY - 5;
       } else {
         this.updateTail(this.headX, this.headY)
         return this.headY = canvas.height - squareOffset;
@@ -120,7 +76,7 @@ class Snake {
     } else if (this.direction == 'down') {
       if (this.headY < canvas.height - squareOffset) {
         this.updateTail(this.headX, this.headY)
-        return this.headY++;
+        return this.headY = this.headY + 5;
       } else {
         this.updateTail(this.headX, this.headY)
         return this.headY = squareOffset;
@@ -128,7 +84,7 @@ class Snake {
     } else if (this.direction == 'left') {
       if (this.headX > squareOffset) {
         this.updateTail(this.headX, this.headY)
-        return this.headX--;
+        return this.headX = this.headX - 5;
       } else {
         this.updateTail(this.headX, this.headY)
         return this.headX = canvas.width - squareOffset;
@@ -253,34 +209,82 @@ document.addEventListener('keydown', function(event) {
   switch (event.keyCode) {
     case 37:
     case 65:
-      snake.changeDir('left')
+      movements.push('left')
       break;
     case 38:
     case 87:
-      snake.changeDir('up')
+      movements.push('up')
       break;
     case 39:
     case 68:
-      snake.changeDir('right')
+      movements.push('right')
       break;
     case 40:
     case 83:
-      snake.changeDir('down')
+      movements.push('down')
       break;
   }
 });
+
 // https://stackoverflow.com/questions/39563033/how-to-resize-the-canvas-using-javascript
+// https://stackoverflow.com/questions/8495876/getting-a-number-divisible-by-five-with-math-round
 (function() {
 
   // Event handler to resize the canvas when the document view is changed
   window.addEventListener('resize', resizeCanvas, false);
 
   function resizeCanvas() {
-    canvas.width = window.innerWidth * .8;
-    canvas.height = window.innerHeight * .7;
+    canvas.width = Math.round((window.innerWidth * .8 )/ 10) * 10; // make canvas dimension divisible by ten
+    canvas.height = Math.round((window.innerHeight * .8 )/ 10) * 10;
   }
   resizeCanvas();
 })();
+
+
+function gameLoop() {
+  if (count % 4 == 0 && movements.length > 0) {
+    count = 0
+    snake.changeDir(movements.pop())
+}
+  cont.clearRect(0, 0, canvas.width, canvas.height);
+  drawFood(foodX, foodY);
+  snake.drawSnake();
+  snake.move();
+  snake.checkForFood();
+  snake.checkForImpact(snake.direction);
+  count++;
+  setTimeout(() => {
+    gameLoop();
+  }, 50 / difficulty);
+}
+
+function setDifficulty(level) {
+  return difficulty = level;
+}
+
+function gameOver() {
+
+}
+
+function randomFood() {
+  foodX = Math.floor(Math.random() * canvas.width) + 1;
+  foodY = Math.floor(Math.random() * canvas.height) + 1;
+  if (foodX != snake.headX && foodY != snake.headY) {
+    drawFood(foodX, foodY);
+  } else randomFood();
+}
+
+function drawFood(x,y) {
+  cont.beginPath();
+  cont.arc(x, y, foodSize,
+    0, 2 * Math.PI);
+  cont.fillStyle = "rgba(255,255,255,1)";
+  cont.fill();
+}
+
+function updateScore() {
+  document.getElementsByClassName('score')[0].innerHTML = score;
+}
 
 function changeColour(color) {
   switch (color) {
@@ -297,6 +301,11 @@ function changeColour(color) {
      snake.setColor = "rgba(62,65,239,1)"
       break;
   }
+}
+
+slider.oninput = function() {
+  difficulty = this.value;
+  setDifficulty(difficulty);
 }
 
 let snake = new Snake('rgba(255,255,255,1)', 5 * tailIncrease, startX, startY, [], [], 'right')

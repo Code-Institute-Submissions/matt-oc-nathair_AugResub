@@ -270,15 +270,18 @@ document.addEventListener('keydown', function(event) {
       break;
   }
 });
+
 // https://stackoverflow.com/questions/39563033/how-to-resize-the-canvas-using-javascript
+// https://stackoverflow.com/questions/8495876/getting-a-number-divisible-by-five-with-math-round
 (function() {
 
   // Event handler to resize the canvas when the document view is changed
   window.addEventListener('resize', resizeCanvas, false);
 
   function resizeCanvas() {
-    canvas.width = window.innerWidth * .8;
-    canvas.height = window.innerHeight * .8;
+    canvas.width = Math.round((window.innerWidth * .8 )/ 5) * 5;
+    canvas.height = Math.round((window.innerHeight * .8 )/ 5) * 5;
+    alert(canvas.width)
   }
   resizeCanvas();
 })();
