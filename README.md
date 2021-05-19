@@ -59,7 +59,7 @@ small touches like appropriate title and favicon add a more polished look.
 
 #### Wireframes
 ![Mobile](/assets/readme-assets/mobile.png)
-![Tablet](/assets/wireframes/ipad.png)
+![Tablet](/assets/readme-assets/ipad.png)
 ![Computer](/assets/readme-assets/computer.png)
 
 ## Technologies Used
@@ -98,11 +98,11 @@ To deploy it is recommended that a pull request is made from the main branch to 
 
 ## Credits
 
-[Animation timing](https://stackoverflow.com/questions/19764018/controlling-fps-with-requestanimationframe)
-[Inspiration](https://levelup.gitconnected.com/building-a-snake-game-using-canvas-260a738edcec)
-[Bootstrap docs](https://getbootstrap.com/)  
-[Background image](https://unsplash.com/photos/p1SKuYXxqec?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink)
-[Javascript API](https://www.taniarascia.com/how-to-connect-to-an-api-with-javascript/)
-[Overlay adapted from stackoverflow](https://stackoverflow.com/questions/61297397/position-absolute-top0-bottom-0-right0-left0-and-parent-paddings)  
-[Formspree was used for the form](https://formspree.i)  
+[Animation timing](https://stackoverflow.com/questions/19764018/controlling-fps-with-requestanimationframe),
+[Inspiration](https://levelup.gitconnected.com/building-a-snake-game-using-canvas-260a738edcec),
+[Bootstrap docs](https://getbootstrap.com/)  ,
+[Background image](https://unsplash.com/photos/p1SKuYXxqec?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink),
+[Javascript API](https://www.taniarascia.com/how-to-connect-to-an-api-with-javascript/),
+[Overlay adapted from stackoverflow](https://stackoverflow.com/questions/61297397/position-absolute-top0-bottom-0-right0-left0-and-parent-paddings) ,
+[Formspree was used for the form](https://formspree.i),
 All images and music used are under creative commons license.
