@@ -15,7 +15,7 @@ let name = "No Name";
 let movements = [];
 let sound = false;
 let timer = 120;
-let audio = new Audio('/assets/sound/tick.wav');
+let audio = new Audio('assets/sound/tick.wav');
 let life = true;
 
 
