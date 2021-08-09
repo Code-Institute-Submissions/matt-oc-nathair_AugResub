@@ -116,6 +116,10 @@ p {
   background-color: #E15B63 !important;
 }
 
+.font-red {
+  color: #e15b64;
+}
+
 .btn-color:hover, .btn-color:focus, .btn-color:active {
   color: #ff9966 !important;
 }
@@ -214,7 +218,7 @@ body.modal-open {
 }
 
 .loader img {
-  height: 25%;
+  height: 15%;
 }
 
 .z-5 {
