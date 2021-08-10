@@ -191,7 +191,7 @@ function resizeCanvas() {
 
 
 function gameLoop() {
-  //allow a turn every 8th iteration to prevent snake turning back on itself
+  // allow a turn every 8th iteration to prevent snake turning back on itself
   if (count % 8 == 0 && movements.length > 0) {
     count = 0
     snake.changeDir(movements.pop())
@@ -213,7 +213,7 @@ function setDifficulty(level) {
 
 function gameOver() {
   sendData(name, score);
-  document.getElementById('closeGameModal').click();
+  //document.getElementById('closeGameModal').click();
 }
 
 function randomFood() {
@@ -265,6 +265,10 @@ function toggleSound() {
     sound = true;
     audio.play();
   }
+}
+
+function restart() {
+
 }
 
 function clock() {

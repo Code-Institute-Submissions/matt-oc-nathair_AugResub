@@ -22,7 +22,7 @@
     <a class="info-link color-white z-5" data-toggle="modal" data-target="#contactUs" role="button"><i class="fas fa-question"></i></a>
   </header>
   <section>
-    <div class="container-fluid vh-100 loader d-flex align-items-center justify-content-center">
+    <div class="container-fluid vh-100 loader align-items-center justify-content-center">
       <div class="row">
         <div class="col-12 d-flex vh-100 justify-content-center align-items-center">
           <h2 class="font-red">Loading Nathair</h2>
@@ -88,7 +88,6 @@
             <button type="button" class="btn bg-red color-white" data-dismiss="modal" id="closeContactModal">Close</button>
             <button type="submit" form="contact" class="btn contact-btn-submit bg-purple color-white" id="contact-submit" data-submit="Sending">Submit</button>
           </div>
-
         </div>
       </div>
     </div>
@@ -173,6 +172,7 @@
           </div>
           <div class="modal-footer-game modal-footer">
             <button type="button" class="btn bg-red color-white" data-dismiss="modal" id="closeGameModal">Quit the Game</button>
+            <button class="btn bg-purple color-white btn-color" id="soundbtn" onclick="restart()">Restart <i class="fas fa-redo"></i></button>
             <button class="btn bg-purple color-white btn-color" id="soundbtn" onclick="toggleSound()">Sound <i class="fas fa-volume-up"></i></button>
           </div>
         </div>

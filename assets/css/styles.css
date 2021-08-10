@@ -215,6 +215,7 @@ body.modal-open {
 
 .loader {
   background-color: #000000;
+  display: flex;
 }
 
 .loader img {
