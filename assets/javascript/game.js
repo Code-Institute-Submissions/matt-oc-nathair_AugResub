@@ -17,6 +17,7 @@ let sound = false;
 let timer = 120;
 let audio = new Audio('assets/sound/tick.wav');
 let life = true;
+let play = false;
 
 
 // Snake class to handle all snake data and movements
@@ -192,6 +193,7 @@ function resizeCanvas() {
 
 function gameLoop() {
   // allow a turn every 8th iteration to prevent snake turning back on itself
+  if (play) {
   if (count % 8 == 0 && movements.length > 0) {
     count = 0
     snake.changeDir(movements.pop())
@@ -206,14 +208,15 @@ function gameLoop() {
     gameLoop();
   }, 50 / difficulty);
 }
+}
 
 function setDifficulty(level) {
   return difficulty = level;
 }
 
 function gameOver() {
+  play = false;
   sendData(name, score);
-  //document.getElementById('closeGameModal').click();
 }
 
 function randomFood() {
@@ -268,7 +271,8 @@ function toggleSound() {
 }
 
 function restart() {
-
+  play = false;
+  startGame();
 }
 
 function clock() {
@@ -291,6 +295,7 @@ let snake = new Snake('rgba(0,164,82,1)', 5 * tailIncrease, startX, startY, [], 
 
 function startGame() {
   name = document.getElementById("name").value;
+  play = true;
   gameLoop(snake);
   updateScore();
   clock();
