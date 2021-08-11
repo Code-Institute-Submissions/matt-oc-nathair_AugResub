@@ -14,10 +14,11 @@ let count = 4;
 let name = "No Name";
 let movements = [];
 let sound = false;
-let timer = 120;
+let timer = 10;
 let audio = new Audio('assets/sound/tick.wav');
 let life = true;
 let play = false;
+let snake;
 
 
 // Snake class to handle all snake data and movements
@@ -271,6 +272,7 @@ function toggleSound() {
 }
 
 function restart() {
+  timer = -1;
   play = false;
   startGame();
 }
@@ -282,6 +284,7 @@ function clock() {
 
   function countdown() {
     if (timer == -1) {
+      elem.innerHTML = 'Game Over';
       clearTimeout(timerId);
       gameOver()
     } else {
@@ -291,10 +294,11 @@ function clock() {
   }
 }
 
-let snake = new Snake('rgba(0,164,82,1)', 5 * tailIncrease, startX, startY, [], [], 'right')
-
 function startGame() {
+  snake = new Snake('rgba(0,164,82,1)', 5 * tailIncrease, startX, startY, [], [], 'right');
   name = document.getElementById("name").value;
+  score = 0;
+  timer = 10;
   play = true;
   gameLoop(snake);
   updateScore();
