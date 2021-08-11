@@ -19,6 +19,7 @@ let audio = new Audio('assets/sound/tick.wav');
 let life = true;
 let play = false;
 let snake;
+let timerId;
 
 
 // Snake class to handle all snake data and movements
@@ -280,7 +281,7 @@ function restart() {
 function clock() {
   clearTimeout(timerId);
   var elem = document.getElementsByClassName('timer')[0];
-  var timerId = setInterval(countdown, 1000);
+  timerId = setInterval(countdown, 1000);
 
   function countdown() {
     if (timer == -1) {
@@ -300,6 +301,7 @@ function startGame() {
   score = 0;
   timer = 10;
   play = true;
+  clearTimeout(timerId);
   gameLoop(snake);
   updateScore();
   clock();
