@@ -213,6 +213,20 @@ body.modal-open {
   display: none;
 }
 
+.touch-btn-container {
+  position: absolute;
+  bottom: 0;
+  display: none;
+}
+
+.touch-btn-container .btn {
+  opacity: .5;
+}
+
+.controls {
+  margin: 10px;
+}
+
 .loader {
   background-color: #000000;
   display: flex;

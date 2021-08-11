@@ -183,6 +183,31 @@ document.addEventListener('keydown', function(event) {
   }
 });
 
+function touchControls(direction){
+  switch (direction) {
+    case 'left': //wasd and arrow keys
+      movements.push('left')
+      break;
+    case 'up':
+      movements.push('up')
+      break;
+    case 'right':
+      movements.push('right')
+      break;
+    case 'down':
+      movements.push('down')
+      break;
+  }
+}
+
+
+// https://codepen.io/tteske/pen/KKwxOxp
+// detecting if touchscreen device
+if ("ontouchstart" in document.documentElement)
+{
+  document.getElementsByClassName('touch-btn-container')[0].style.display = "block"
+}
+
 // https://stackoverflow.com/questions/39563033/how-to-resize-the-canvas-using-javascript
 // https://stackoverflow.com/questions/8495876/getting-a-number-divisible-by-five-with-math-round
 // Event handler to resize the canvas when the document view is changed as canvas cant be set in css
