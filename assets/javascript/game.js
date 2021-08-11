@@ -14,7 +14,7 @@ let count = 4;
 let name = "No Name";
 let movements = [];
 let sound = false;
-let timer = 10;
+let timer = 120;
 let gameTimeout;
 let audio = new Audio('assets/sound/tick.wav');
 let life = true;
@@ -301,7 +301,7 @@ function startGame() {
   name = document.getElementById("handle").value;
   clearTimeout(gameTimeout)
   score = 0;
-  timer = 10;
+  timer = 120;
   play = true;
   count = 4;
   clearTimeout(timerId);
@@ -309,5 +309,6 @@ function startGame() {
   updateScore();
   clock();
   resizeCanvas();
+  randomFood();
   snake.updateTail(startX, startY, true, snake.length)
 }
