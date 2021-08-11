@@ -15,6 +15,7 @@ let name = "No Name";
 let movements = [];
 let sound = false;
 let timer = 10;
+let gameTimeout;
 let audio = new Audio('assets/sound/tick.wav');
 let life = true;
 let play = false;
@@ -197,8 +198,8 @@ function gameLoop() {
   // allow a turn every 8th iteration to prevent snake turning back on itself
   if (play) {
   if (count % 8 == 0 && movements.length > 0) {
-    count = 0
-    snake.changeDir(movements.pop())
+    count = 0;
+    snake.changeDir(movements.pop());
   }
   cont.clearRect(0, 0, canvas.width, canvas.height);
   drawFood(foodX, foodY);
@@ -206,7 +207,7 @@ function gameLoop() {
   snake.move();
   snake.checkForFood();
   count++;
-  setTimeout(() => {
+  gameTimeout = setTimeout(() => {
     gameLoop();
   }, 50 / difficulty);
 }
@@ -298,9 +299,11 @@ function clock() {
 function startGame() {
   snake = new Snake('rgba(0,164,82,1)', 5 * tailIncrease, startX, startY, [], [], 'right');
   name = document.getElementById("handle").value;
+  clearTimeout(gameTimeout)
   score = 0;
   timer = 10;
   play = true;
+  count = 4;
   clearTimeout(timerId);
   gameLoop(snake);
   updateScore();
