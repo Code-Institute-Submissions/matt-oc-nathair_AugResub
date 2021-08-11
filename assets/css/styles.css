@@ -284,4 +284,12 @@ body.modal-open {
   h3 {
     font-size: 1rem !important;
   }
+
+  .modal-wide {
+    max-width: 100%;
+  }
+
+  #greenbtn, #blutbtn, #pinkbtn, #purplebtn {
+    margin: 7px;
+  }
 }
