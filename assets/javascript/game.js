@@ -296,7 +296,7 @@ function clock() {
 
 function startGame() {
   snake = new Snake('rgba(0,164,82,1)', 5 * tailIncrease, startX, startY, [], [], 'right');
-  name = document.getElementById("name").value;
+  name = document.getElementById("handle").value;
   score = 0;
   timer = 10;
   play = true;
