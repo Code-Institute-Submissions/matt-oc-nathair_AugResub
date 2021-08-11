@@ -293,3 +293,9 @@ body.modal-open {
     margin: 7px;
   }
 }
+
+@media (max-width: 390px) {
+  .game-menu {
+    font-size: .8rem!important;
+  }
+}
