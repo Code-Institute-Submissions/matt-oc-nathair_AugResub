@@ -98,6 +98,7 @@ function ajax(method, url, data, success, error) {
   xhr.send(data);
 }
 
+
 // loader removal
 $(document).ready(function() {
   setTimeout(() => {

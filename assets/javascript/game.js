@@ -242,6 +242,7 @@ function setDifficulty(level) {
 
 function gameOver() {
   play = false;
+  clearTimeout(timerId);
   sendData(name, score);
 }
 
@@ -310,7 +311,6 @@ function clock() {
   function countdown() {
     if (timer == -1) {
       elem.innerHTML = 'Game Over';
-      clearTimeout(timerId);
       gameOver();
     } else {
       elem.innerHTML = timer + ' seconds remaining';
