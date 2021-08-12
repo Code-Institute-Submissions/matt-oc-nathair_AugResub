@@ -184,7 +184,7 @@ document.addEventListener('keydown', function(event) {
 
 function touchControls(direction) {
   switch (direction) {
-    case 'left': //wasd and arrow keys
+    case 'left':
       movements.push('left');
       break;
     case 'up':
