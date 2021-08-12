@@ -60,24 +60,24 @@ Small touches like appropriate title and favicon add a more polished look.
 For added ergonomic on-screen buttons appear to control the snake on devices with a touchscreen. These are opaque so as not to obscure the play area but provide and nice method of control on devices without a keyboard.
 
 #### Wireframes
-- Mobile wireframe - [Mobile](/assets/readme-assets/mobile.png)
+- Mobile wireframe - [View](/assets/readme-assets/mobile.png)
 
-- Tablet wireframe - [Tablet](/assets/readme-assets/ipad.png)
+- Tablet wireframe - [View](/assets/readme-assets/ipad.png)
 
-- Computer wireframe - [Computer](/assets/readme-assets/computer.png)
+- Computer wireframe - [View](/assets/readme-assets/computer.png)
 
 #### Screenshots
--   Browser Homepage - [View](/readme-assets/home.png)
+-   Browser Homepage - [View](/assets/readme-assets/home.png)
 
--   Contact form - [View](/readme-assets/contact.png)
+-   Contact form - [View](/assets/readme-assets/contact.png)
 
--   Game - [View](/readme-assets/game.png)
+-   Game - [View](/assets/readme-assets/game.png)
 
--   Leaderboard - [View](/readme-assets/leaderboard.png)
+-   Leaderboard - [View](/assets/readme-assets/leaderboard.png)
 
--   Mobile gameplay - [View](/readme-assets/mobile-game.png)
+-   Mobile gameplay - [View](/assets/readme-assets/mobile-game.png)
 
--   Mobile homepage view - [View](/readme-assets/mobile-home.png)
+-   Mobile homepage view - [View](/assets/readme-assets/mobile-home.png)
 
 
 ## Technologies Used
