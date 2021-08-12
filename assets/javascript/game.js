@@ -11,12 +11,15 @@ let startX = 100;
 let startY = 100;
 let foodSize = 5;
 let count = 4;
-let name = "No Name";
 let movements = [];
 let sound = false;
 let timer = 120;
-let audio = new Audio('/assets/sound/tick.wav');
+let gameTimeout;
+let audio = new Audio('assets/sound/tick.wav');
 let life = true;
+let play = false;
+let snake;
+let timerId;
 
 
 // Snake class to handle all snake data and movements
@@ -32,7 +35,7 @@ class Snake {
   }
 
   increaseLength(x, y) {
-    this.updateTail(x, y, true)
+    this.updateTail(x, y, true);
     return this.length + tailIncrease;
   }
 
@@ -62,34 +65,34 @@ class Snake {
   move() {
     if (this.direction == 'right') {
       if (this.headX < canvas.width - squareOffset) {
-        this.updateTail(this.headX, this.headY)
+        this.updateTail(this.headX, this.headY);
         return this.headX = this.headX + 2.5; // move 2.5px at a time
       } else {
-        this.updateTail(this.headX, this.headY)
+        this.updateTail(this.headX, this.headY);
         return this.headX = squareOffset;
       }
     } else if (this.direction == 'up') {
       if (this.headY > squareOffset) {
-        this.updateTail(this.headX, this.headY)
+        this.updateTail(this.headX, this.headY);
         return this.headY = this.headY - 2.5;
       } else {
-        this.updateTail(this.headX, this.headY)
+        this.updateTail(this.headX, this.headY);
         return this.headY = canvas.height - squareOffset;
       }
     } else if (this.direction == 'down') {
       if (this.headY < canvas.height - squareOffset) {
-        this.updateTail(this.headX, this.headY)
+        this.updateTail(this.headX, this.headY);
         return this.headY = this.headY + 2.5;
       } else {
-        this.updateTail(this.headX, this.headY)
+        this.updateTail(this.headX, this.headY);
         return this.headY = squareOffset;
       }
     } else if (this.direction == 'left') {
       if (this.headX > squareOffset) {
-        this.updateTail(this.headX, this.headY)
+        this.updateTail(this.headX, this.headY);
         return this.headX = this.headX - 2.5;
       } else {
-        this.updateTail(this.headX, this.headY)
+        this.updateTail(this.headX, this.headY);
         return this.headX = canvas.width - squareOffset;
       }
     }
@@ -118,17 +121,17 @@ class Snake {
   drawSnake() {
     cont.beginPath();
     if (snake.direction == 'right') {
-      cont.arc(this.headX - squareOffset + 19, this.headY - squareOffset + 6, 3, 0, 2 * Math.PI) //snakes eyes
-      cont.arc(this.headX - squareOffset + 19, this.headY - squareOffset + 14, 3, 0, 2 * Math.PI)
+      cont.arc(this.headX - squareOffset + 19, this.headY - squareOffset + 6, 3, 0, 2 * Math.PI); //snakes eyes
+      cont.arc(this.headX - squareOffset + 19, this.headY - squareOffset + 14, 3, 0, 2 * Math.PI);
     } else if (snake.direction == 'left') {
-      cont.arc(this.headX - squareOffset + 1, this.headY - squareOffset + 6, 3, 0, 2 * Math.PI)
-      cont.arc(this.headX - squareOffset + 1, this.headY - squareOffset + 14, 3, 0, 2 * Math.PI)
+      cont.arc(this.headX - squareOffset + 1, this.headY - squareOffset + 6, 3, 0, 2 * Math.PI);
+      cont.arc(this.headX - squareOffset + 1, this.headY - squareOffset + 14, 3, 0, 2 * Math.PI);
     } else if (snake.direction == 'down') {
-      cont.arc(this.headX - squareOffset + 6, this.headY - squareOffset + 19, 3, 0, 2 * Math.PI)
-      cont.arc(this.headX - squareOffset + 14, this.headY - squareOffset + 19, 3, 0, 2 * Math.PI)
+      cont.arc(this.headX - squareOffset + 6, this.headY - squareOffset + 19, 3, 0, 2 * Math.PI);
+      cont.arc(this.headX - squareOffset + 14, this.headY - squareOffset + 19, 3, 0, 2 * Math.PI);
     } else {
-      cont.arc(this.headX - squareOffset + 6, this.headY - squareOffset + 1, 3, 0, 2 * Math.PI)
-      cont.arc(this.headX - squareOffset + 14, this.headY - squareOffset + 1, 3, 0, 2 * Math.PI)
+      cont.arc(this.headX - squareOffset + 6, this.headY - squareOffset + 1, 3, 0, 2 * Math.PI);
+      cont.arc(this.headX - squareOffset + 14, this.headY - squareOffset + 1, 3, 0, 2 * Math.PI);
     }
     cont.fillStyle = "#05fc4f";
     cont.fill();
@@ -145,13 +148,13 @@ class Snake {
   drawTongue() {
     cont.beginPath();
     if (snake.direction == 'right') {
-      cont.arc(this.headX - squareOffset + 19, this.headY - squareOffset + 10, 10, 0, 2 * Math.PI)
+      cont.arc(this.headX - squareOffset + 19, this.headY - squareOffset + 10, 10, 0, 2 * Math.PI);
     } else if (snake.direction == 'left') {
-      cont.arc(this.headX - squareOffset + 1, this.headY - squareOffset + 10, 10, 0, 2 * Math.PI)
+      cont.arc(this.headX - squareOffset + 1, this.headY - squareOffset + 10, 10, 0, 2 * Math.PI);
     } else if (snake.direction == 'down') {
-      cont.arc(this.headX - squareOffset + 10, this.headY - squareOffset + 19, 10, 0, 2 * Math.PI)
+      cont.arc(this.headX - squareOffset + 10, this.headY - squareOffset + 19, 10, 0, 2 * Math.PI);
     } else {
-      cont.arc(this.headX - squareOffset + 10, this.headY - squareOffset + 1, 10, 0, 2 * Math.PI)
+      cont.arc(this.headX - squareOffset + 10, this.headY - squareOffset + 1, 10, 0, 2 * Math.PI);
     }
     cont.fillStyle = "#f55b96";
     cont.fill();
@@ -162,22 +165,46 @@ document.addEventListener('keydown', function(event) {
   switch (event.keyCode) {
     case 37: //wasd and arrow keys
     case 65:
-      movements.push('left')
+      movements.push('left');
       break;
     case 38:
     case 87:
-      movements.push('up')
+      movements.push('up');
       break;
     case 39:
     case 68:
-      movements.push('right')
+      movements.push('right');
       break;
     case 40:
     case 83:
-      movements.push('down')
+      movements.push('down');
       break;
   }
 });
+
+function touchControls(direction) {
+  switch (direction) {
+    case 'left':
+      movements.push('left');
+      break;
+    case 'up':
+      movements.push('up');
+      break;
+    case 'right':
+      movements.push('right');
+      break;
+    case 'down':
+      movements.push('down');
+      break;
+  }
+}
+
+
+// https://codepen.io/tteske/pen/KKwxOxp
+// detecting if touchscreen device
+if ("ontouchstart" in document.documentElement) {
+  document.getElementsByClassName('touch-btn-container')[0].style.display = "block";
+}
 
 // https://stackoverflow.com/questions/39563033/how-to-resize-the-canvas-using-javascript
 // https://stackoverflow.com/questions/8495876/getting-a-number-divisible-by-five-with-math-round
@@ -191,20 +218,22 @@ function resizeCanvas() {
 
 
 function gameLoop() {
-  //allow a turn every 8th iteration to prevent snake turning back on itself
-  if (count % 8 == 0 && movements.length > 0) {
-    count = 0
-    snake.changeDir(movements.pop())
+  // allow a turn every 8th iteration to prevent snake turning back on itself
+  if (play) {
+    if (count % 8 == 0 && movements.length > 0) {
+      count = 0;
+      snake.changeDir(movements.pop());
+    }
+    cont.clearRect(0, 0, canvas.width, canvas.height);
+    drawFood(foodX, foodY);
+    snake.drawSnake();
+    snake.move();
+    snake.checkForFood();
+    count++;
+    gameTimeout = setTimeout(() => {
+      gameLoop();
+    }, 50 / difficulty);
   }
-  cont.clearRect(0, 0, canvas.width, canvas.height);
-  drawFood(foodX, foodY);
-  snake.drawSnake();
-  snake.move();
-  snake.checkForFood();
-  count++;
-  setTimeout(() => {
-    gameLoop();
-  }, 50 / difficulty);
 }
 
 function setDifficulty(level) {
@@ -212,8 +241,8 @@ function setDifficulty(level) {
 }
 
 function gameOver() {
+  play = false;
   sendData(name, score);
-  document.getElementById('closeGameModal').click();
 }
 
 function randomFood() {
@@ -239,16 +268,16 @@ function updateScore() {
 function changeColour(color) {
   switch (color) {
     case 'green':
-      snake.color = "rgba(0,164,82,1)"
+      snake.color = "rgba(0,164,82,1)";
       break;
     case 'blue':
-      snake.color = "rgba(0,163,213,1)"
+      snake.color = "rgba(0,163,213,1)";
       break;
     case 'pink':
-      snake.color = "rgba(226,164,213,1)"
+      snake.color = "rgba(226,164,213,1)";
       break;
     case 'purple':
-      snake.color = "rgba(62,65,239,1)"
+      snake.color = "rgba(62,65,239,1)";
       break;
   }
 }
@@ -256,7 +285,7 @@ function changeColour(color) {
 slider.oninput = function() {
   difficulty = this.value;
   setDifficulty(difficulty);
-}
+};
 
 function toggleSound() {
   if (sound) {
@@ -267,15 +296,22 @@ function toggleSound() {
   }
 }
 
+function restart() {
+  timer = -1;
+  play = false;
+  startGame();
+}
+
 function clock() {
   clearTimeout(timerId);
   var elem = document.getElementsByClassName('timer')[0];
-  var timerId = setInterval(countdown, 1000);
+  timerId = setInterval(countdown, 1000);
 
   function countdown() {
     if (timer == -1) {
+      elem.innerHTML = 'Game Over';
       clearTimeout(timerId);
-      gameOver()
+      gameOver();
     } else {
       elem.innerHTML = timer + ' seconds remaining';
       timer--;
@@ -283,13 +319,19 @@ function clock() {
   }
 }
 
-let snake = new Snake('rgba(0,164,82,1)', 5 * tailIncrease, startX, startY, [], [], 'right')
-
 function startGame() {
-  name = document.getElementById("name").value;
+  snake = new Snake('rgba(0,164,82,1)', 5 * tailIncrease, startX, startY, [], [], 'right');
+  name = document.getElementById("handle").value;
+  clearTimeout(gameTimeout);
+  score = 0;
+  timer = 120;
+  play = true;
+  count = 4;
+  clearTimeout(timerId);
   gameLoop(snake);
   updateScore();
   clock();
   resizeCanvas();
-  snake.updateTail(startX, startY, true, snake.length)
+  randomFood();
+  snake.updateTail(startX, startY, true, snake.length);
 }

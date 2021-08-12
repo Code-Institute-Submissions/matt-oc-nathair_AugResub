@@ -55,12 +55,30 @@ The main layout is done with bootstrap and minimal css has been added to make th
 
 Speed of the game can be changed using a slider to provide an easier or more challenging game.
 
-small touches like appropriate title and favicon add a more polished look.
+Small touches like appropriate title and favicon add a more polished look.
+
+For added ergonomic on-screen buttons appear to control the snake on devices with a touchscreen. These are opaque so as not to obscure the play area but provide and nice method of control on devices without a keyboard.
 
 #### Wireframes
-![Mobile](/assets/readme-assets/mobile.png)
-![Tablet](/assets/readme-assets/ipad.png)
-![Computer](/assets/readme-assets/computer.png)
+- Mobile wireframe - [Mobile](/assets/readme-assets/mobile.png)
+
+- Tablet wireframe - [Tablet](/assets/readme-assets/ipad.png)
+
+- Computer wireframe - [Computer](/assets/readme-assets/computer.png)
+
+#### Screenshots
+-   Browser Homepage - [View](/readme-assets/home.png)
+
+-   Contact form - [View](/readme-assets/contact.png)
+
+-   Game - [View](/readme-assets/game.png)
+
+-   Leaderboard - [View](/readme-assets/leaderboard.png)
+
+-   Mobile gameplay - [View](/readme-assets/mobile-game.png)
+
+-   Mobile homepage view - [View](/readme-assets/mobile-home.png)
+
 
 ## Technologies Used
 
