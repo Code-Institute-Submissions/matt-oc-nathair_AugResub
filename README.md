@@ -167,5 +167,6 @@ A local copy of the repository should be cloned and edited on your local machine
 [Background image](https://unsplash.com/photos/p1SKuYXxqec?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink)<br />
 [Javascript API](https://www.taniarascia.com/how-to-connect-to-an-api-with-javascript/)<br />
 [Overlay adapted from stackoverflow](https://stackoverflow.com/questions/61297397/position-absolute-top0-bottom-0-right0-left0-and-parent-paddings)<br />
-[Formspree was used for the form](https://formspree.i)<br />
+[Formspree was used for the form](https://formspree.i)<br /><br>
+
 All images and music used are under creative commons license.
