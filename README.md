@@ -91,7 +91,6 @@ bootstrap
 json
 Node.js
 git and github
-[Formspree](https://formspree.io/)
 
 
 ## Testing
@@ -116,12 +115,37 @@ Css and Html validated using the check on W3. Results for html can be seen here:
 CSS results available here: [Results](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fmatt-oc.github.io%2Fnathair%2Fassets%2Fcss%2Fstyles.css&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
 
 
-In addition there were minor layout bugs when testing for mobile view sizes.
+### Further Testing
+
+-   The website was viewed on a variety of devices such as Desktop, Laptop, iPhone7, iPhone 8 & Android.
+-   Friends and family members were asked to review the site and documentation to point out any bugs and/or user experience issues.
+-   The site was used as all users and from all perspectives to ensure good performance and no bugs.
+
+
+In addition there were minor layout bugs found when testing for mobile view sizes, these were fixed during development.
+
+It was found that initially the snake was able to turn back on itself which removed from the overall user experience of the game. This was improved by only allowing a turn once the snake had moved enough to not overlap.
+
+There was a bug discovered that when quitting a game your score was submitted but once the timer (that was still running in the background) ran out the score and alert box would be shown again. This was solved by resetting the timer on gameover or quit.
+
+The site was tested from the perspective of a user new to the game.
+
+Instructions were found to be clear and intuitive and it was easy to both start a new game or view the leaderboard form the home page.
+
+The purpose and objective of the game was clear from the outset and it was easy to both quit the game and restart once you had finished without having to reset your username, difficulty and colour.
+
+It was found to be easy to set player name, colour and difficulty level and WASD keys in addition to arrow keys were found to work flawlessly.
+On screen keys showed to the user when testing on mobile and were found to be very effective and ergonomic.
+
+The small question mark in the top right corner was found to be visual and subtle to provide a way for users to communicate with the site owner.
+Overall it was felt that the site provided a good and fun user experience.
 
 ## Deployment
 
 The site is hosted on the gh-pages branch of the github repository.
 To deploy it is recommended that a pull request is made from the main branch to the gh-pages branch as this allows for code review before any changes go live.
+
+A local copy of the repository should be cloned and edited on your local machine. You can then add you changes with "git add .", commit them with "git commit -m ''" and push them with "git push". If you are working on the main branch your changes will be automatically deployed to the live site. If you are working on a branch you should create a pull request from your branch to main.
 
 
 ## Credits
