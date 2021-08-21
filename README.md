@@ -1,7 +1,9 @@
 # Nathair (snake in Irish)
 Javascript game for playing online with cloud score storage.
 
-Published: [Nathair](https://matt-oc.github.io/nathair/)
+Published here: [Nathair](https://matt-oc.github.io/nathair/)
+
+
 Although outside of the main remit of the project a node.js server was set up that exposes an api and Nathair makes full use of it, getting and posting high scores and names.
 [Link to node repo ](https://github.com/matt-oc/node-storage-API)
 
@@ -104,7 +106,15 @@ The API initially was not working until the correct syntax was used setting the 
 
 Lighthouse used to test page performance.
 
-Css and Html Validated using the check on [w3](https://validator.w3.org/)
+The results were excellent as can be seen here:
+-   Lighthouse Desktop Results - [View](/assets/readme-assets/lighthouse-desktop.png)
+-   Lighthouse Mobile Results - [View](/assets/readme-assets/lighthouse-mobile.png)
+
+
+Css and Html validated using the check on W3. Results for html can be seen here: [Results](https://validator.w3.org/nu/?doc=https%3A%2F%2Fmatt-oc.github.io%2Fnathair%2F)
+
+CSS results available here: [Results](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fmatt-oc.github.io%2Fnathair%2Fassets%2Fcss%2Fstyles.css&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
+
 
 In addition there were minor layout bugs when testing for mobile view sizes.
 
