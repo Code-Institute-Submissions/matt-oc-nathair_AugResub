@@ -128,6 +128,8 @@ It was found that initially the snake was able to turn back on itself which remo
 
 There was a bug discovered that when quitting a game your score was submitted but once the timer (that was still running in the background) ran out the score and alert box would be shown again. This was solved by resetting the timer on gameover or quit.
 
+Upon final testing it was found that moving the initialisation of the snake variable into the startGame() function led to the color selection in the game setup modal not working. The fix for this was to put the color into a variable instead of directly access the snake.color method itself.
+
 
 ### User Testing
 
