@@ -20,6 +20,7 @@ let life = true;
 let play = false;
 let snake;
 let timerId;
+let color = 'rgba(0,164,82,1)';
 
 
 // Snake class to handle all snake data and movements
@@ -269,16 +270,16 @@ function updateScore() {
 function changeColour(color) {
   switch (color) {
     case 'green':
-      snake.color = "rgba(0,164,82,1)";
+      color = "rgba(0,164,82,1)";
       break;
     case 'blue':
-      snake.color = "rgba(0,163,213,1)";
+      color = "rgba(0,163,213,1)";
       break;
     case 'pink':
-      snake.color = "rgba(226,164,213,1)";
+      color = "rgba(226,164,213,1)";
       break;
     case 'purple':
-      snake.color = "rgba(62,65,239,1)";
+      color = "rgba(62,65,239,1)";
       break;
   }
 }
@@ -320,7 +321,7 @@ function clock() {
 }
 
 function startGame() {
-  snake = new Snake('rgba(0,164,82,1)', 5 * tailIncrease, startX, startY, [], [], 'right');
+  snake = new Snake(color, 5 * tailIncrease, startX, startY, [], [], 'right');
   name = document.getElementById("handle").value;
   clearTimeout(gameTimeout);
   score = 0;
