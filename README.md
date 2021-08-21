@@ -128,6 +128,9 @@ It was found that initially the snake was able to turn back on itself which remo
 
 There was a bug discovered that when quitting a game your score was submitted but once the timer (that was still running in the background) ran out the score and alert box would be shown again. This was solved by resetting the timer on gameover or quit.
 
+
+### User Testing
+
 The site was tested from the perspective of a user new to the game.
 
 Instructions were found to be clear and intuitive and it was easy to both start a new game or view the leaderboard form the home page.
@@ -139,6 +142,14 @@ On screen keys showed to the user when testing on mobile and were found to be ve
 
 The small question mark in the top right corner was found to be visual and subtle to provide a way for users to communicate with the site owner.
 Overall it was felt that the site provided a good and fun user experience.
+
+### Owner Testing
+
+From the perspective of the site owner the site was found to be easy to navigate and operate. A clear are for contact in the form of a contact modal was present.
+The game itself was found to be suitably challenging on the higher levels to suit skilled players but not so difficult as to put people off.
+The game had a good replay-ability factor and favoured those with good dexterity, thus providing some basic hand eye co ordination training.
+
+The leaderboard provided a target for friends and family members to achieve, with the highest scores being recorded persistently for everyone to see.
 
 ## Deployment
 
